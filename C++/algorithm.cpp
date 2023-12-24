@@ -2,7 +2,7 @@
 #include <cmath>
 using std::cout;
 
-const void swap(auto &a,auto &b){
+const void swap_(auto &a,auto &b){
 	auto temp = &a;
 	&a = &b;
 	&b = temp;
@@ -27,7 +27,7 @@ namespace sorting
 				}
 			}
 		}
-		printArr(array,size);
+//		printArr(array,size);
 	}
 	void bubble2(int array[],int size) { //bubble sort with other algorithm
 		int temp;
@@ -40,7 +40,7 @@ namespace sorting
 				}
 			}
 		}
-		printArr(array,size);
+//		printArr(array,size);
 	}
 	void selection(int array[],int size) { //selection sort
 		int temp,minIndex;
@@ -53,7 +53,7 @@ namespace sorting
 			array[i] = array[minIndex];
 			array[minIndex] = temp;
 		}
-		printArr(array,size);
+//		printArr(array,size);
 	}
 }
 
@@ -70,7 +70,7 @@ int mod(int arr[],int size) {
 			index = i;
 		}
 	}
-	cout << "The most repeated value "<<arr[index]<<"\n";
+//	cout << "The most repeated value "<<arr[index]<<"\n";
   return arr[index];
 }
 
@@ -111,10 +111,10 @@ int closeValToAvarageValue(int arr[],int size) {
 			}
 		}
 	}
-	cout << "\n";
-	cout << "Avarage: " << avVal << "\n";
-	cout << "The closet difference to the avarage: "<< offset << "\n";
-	cout << "The closet value to the avarage: " << arr[index] << "\n";
+//	cout << "\n";
+//	cout << "Avarage: " << avVal << "\n";
+//	cout << "The closet difference to the avarage: "<< offset << "\n";
+//	cout << "The closet value to the avarage: " << arr[index] << "\n";
 	return arr[index];
 }
 
