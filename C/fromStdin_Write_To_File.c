@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define BUFFER_S 255
+#define BUFFER_S 1024
 
 int main(int argc, char *argv[]) {
         char *fileName = argv[1];
