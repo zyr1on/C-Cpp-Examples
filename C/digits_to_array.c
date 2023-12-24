@@ -18,7 +18,7 @@ const void printArr(int arr[],int size,int mode) {
     }
 }
 
-// number of digits of the given number
+// returns number of digits of the given number
 int total_digits(long int number) { 
     int count = 0;
     while(number != 0) {
