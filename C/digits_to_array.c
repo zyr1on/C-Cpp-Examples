@@ -11,7 +11,7 @@ const void printArr(int arr[],int size,int mode) {
         for(int i=0;i<size;i++)
             printf("%d\n",arr[i]);
         break;
-    default:                          //  Default: Side by side
+    default:                          //  Default: Side by side without spaces
         for(int i=0;i<size;i++)
             printf("%d",arr[i]);
         break;
