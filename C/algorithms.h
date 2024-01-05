@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-
 const void printArr(int arr[],int size) {
     for(int i=0;i<size;i++)
         printf("%d ",arr[i]);
@@ -45,8 +44,27 @@ const void shift_left(int swipe_count,int arr[],int size) {
     }
 }
 
+// Shift the array elements to the left from begin point and add the first element to the end (Shifts to the left by the count value.)
+const void shift_left_t(int begin,int swipe_count,int arr[],int size) { 
+    for(int t=0;t<swipe_count;t++) {
+        int temp = arr[begin];
+        for(int i=begin+1;i<size;i++)
+            arr[i-1]=arr[i];
+        arr[size-1] = temp;
+    }
+}
+
+// Shift the array elements to the left and add the zero value to the end (Shifts to the left by the count value.)
+const void shift_left_withZero(int try,int arr[],int size) {
+    for(int t=0;t<try;t++) {
+        int temp = arr[0];
+        for(int i=1;i<size;i++)
+            arr[i-1]=arr[i];
+        arr[size-1] = 0;
+    }
+}
+
 bool isPrime(int num) { // isPrime(number) returns 1 or 0;
-	int ct=0;
 	if(num % 2 == 0)
 		return num == 2;
 	if(num % 3 == 0)
