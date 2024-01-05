@@ -1,5 +1,13 @@
 #include <stdio.h>
+#include <stdbool.h>
 
+
+const void printArr(int arr[],int size) {
+    for(int i=0;i<size;i++)
+        printf("%d ",arr[i]);
+}
+
+// reverse array
 const void reverseArr(int arr[],int size) {
     for(int i=0;i<size/2;i++){
         int temp = arr[i];
@@ -7,12 +15,14 @@ const void reverseArr(int arr[],int size) {
         arr[size-1-i] = temp;
     }
 }
+// swaps 2 given elements | swap(&a,&b);
 const void swap(int *a,int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
+// sorts array
 const void selection_sort(int arr[],int size) {
     for(int i=0;i<size-1;i++) {
         int minIndex = i;
@@ -34,3 +44,22 @@ const void shift_left(int swipe_count,int arr[],int size) {
         arr[size-1] = temp;
     }
 }
+
+bool isPrime(int num) { // isPrime(number) returns 1 or 0;
+	int ct=0;
+	if(num % 2 == 0)
+		return num == 2;
+	if(num % 3 == 0)
+		return num == 3;
+	if(num % 5 == 0)
+		return num == 5;
+	if(num % 7 == 0)
+		return num == 7;
+	if(num % 11 == 0)
+		return num == 11;
+	for(int i=13;i<num/2;i+=2)
+		if( num % i == 0 ) return false;
+	return true;
+}
+
+
