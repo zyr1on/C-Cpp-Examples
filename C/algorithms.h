@@ -66,6 +66,20 @@ const void shift_left_withZero(int try,int arr[],int size) {
     }
 }
 
+const int mod(int arr[],int size) {
+	int index,k=0,count=0;
+	for(int i=0;i<size;i++) {
+		count = 0;
+		for(int k=0;k<size;k++)
+			if(arr[k] == arr[i]) count++;
+		if(count > k) {
+			k = count;
+			index = i;
+        	}
+	}
+	return arr[index];
+}
+
 bool isPrime(int num) { // isPrime(number) returns 1 or 0;
 	if(num % 2 == 0)
 		return num == 2;
