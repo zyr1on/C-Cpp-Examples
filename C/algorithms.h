@@ -110,6 +110,15 @@ int partition(int arr[],int low,int high)
   return (i+1);
 }
 
+int min_value(int arr[],int size) {
+	int offset = arr[0];
+	for(int i=1;i<size;i++)
+		if(arr[i] < offset)
+			offset = arr[i];
+	return offset;
+}
+
+
 // quickSort(arr,0,size-1);
 void quickSort(int arr[],int low,int high)
 {
