@@ -25,13 +25,11 @@ complex operation(char type[],complex c1,complex c2) {
 		result.real = c1.real*c2.real - c1.im *c2.im;
 		result.im = c1.real*c2.im + c1.im * c2.real;
 	}
-	else {
+	else
 		printf("Operations is sum/sub/div/multi\n");
-	}
 	return result;
 }
-
-int main() {
+main() {
 	complex c1 = {3,-1};
 	complex c2 = {2,-2};
 	complex result = operation("div",c1,c2);
