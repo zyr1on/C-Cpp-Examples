@@ -32,7 +32,7 @@ complex operation(char type[],complex c1,complex c2) {
 main() {
 	complex c1 = {3,-1};
 	complex c2 = {2,-2};
-	complex result = operation("div",c1,c2);
-	printf("%.1fi + %.1fj\n",result.real,result.im);
+	complex example = operation("div",c1,c2);
+	printf("%.1fi + %.1fj\n",example.real,example.im);
 	return 0;
 }
