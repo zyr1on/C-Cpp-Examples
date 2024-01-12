@@ -22,7 +22,6 @@ complex operation(char type[],complex c1,complex c2) {
 		result.im = (c1.im * c2.real - c1.real*c2.im) / (c2.real*c2.real + c2.im * c2.im);
 	}
 	else if(strcmp("multi",type) == 0 ||strcmp("multiply",type) == 0) {
-		// (a*c-bd) + i(ad+bc)
 		result.real = c1.real*c2.real - c1.im *c2.im;
 		result.im = c1.real*c2.im + c1.im * c2.real;
 	}
