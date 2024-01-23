@@ -12,7 +12,7 @@ using std::stoi;
 
 int main(){
     string time; cout << "Sec: ";cin >> time;
-    cout << stoi(time) / 60 << " seconds to shutdown";
+    cout << stoi(time) / 60 << " mins to shutdown";
     time = "shutdown -s -f -t " + time;
     system(time.c_str());
     getch();
