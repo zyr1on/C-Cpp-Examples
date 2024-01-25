@@ -1,20 +1,49 @@
 /* 
-g++.exe shutdown.cpp -o shutdown.exe -static-libstdc++ -static -static-libgcc
+g++ shutdown.cpp -o shutdown.exe -static-libstdc++ -static -static-libgcc
 */
-
 #include <iostream>
-#include <conio.h>
-
+#include <string>
 using std::string;
 using std::cout;
 using std::cin;
-using std::stoi;
+
+void shut_min(int min) {
+    cout << min << " Minustes to shutdown\n";
+    min = min * 60;
+    string min_ = std::to_string(min);
+    string cmd = "shutdown -s -f -t " + min_;
+    system(cmd.c_str());
+}
+void shut_sec(int sec) {
+    cout << sec << " Seconds to shutdown\n";
+    string sec_ = std::to_string(sec);
+    string cmd = "shutdown -s -f -t " + sec_;
+    system(cmd.c_str());
+}
+void abort_shut() {
+    cout << "Aborted\n";
+    system("shutdown -a");
+}
 
 int main(){
-    string time; cout << "Sec: ";cin >> time;
-    cout << stoi(time) / 60 << " mins to shutdown";
-    time = "shutdown -s -f -t " + time;
-    system(time.c_str());
-    getch();
+    int time,pref;
+    cout << "1-Mins\n2-Secs\n3-Abort scheduled shutdown\n";
+    cout << "> ";cin >> pref;
+    switch (pref){
+    case 1:
+        cout << "Time: ";cin >> time;
+        shut_min(time);
+        break;
+    case 2:
+        cout << "Time: ";cin >> time;
+        shut_sec(time);
+        break;
+    case 3:
+        abort_shut();
+        break;    
+    default:
+        cout << "Enter number between 1-3\n";
+        break;
+    }
     return 0;
 }
