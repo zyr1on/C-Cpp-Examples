@@ -1,12 +1,13 @@
 /* 
-g++ shutdown.cpp -o shutdown.exe -static-libstdc++ -static -static-libgcc
+g++ shutDown.cpp -o shutDown.exe -static-libstdc++ -static -static-libgcc
+'if output file is shutdown.exe it won't work, idk why :)'
 */
+
 #include <iostream>
 #include <string>
 using std::string;
 using std::cout;
 using std::cin;
-
 void shut_min(int min) {
     cout << min << " Minustes to shutdown\n";
     min = min * 60;
@@ -24,8 +25,7 @@ void abort_shut() {
     cout << "Aborted\n";
     system("shutdown -a");
 }
-
-int main(){
+int main() {
     int time,pref;
     cout << "1-Mins\n2-Secs\n3-Abort scheduled shutdown\n";
     cout << "> ";cin >> pref;
