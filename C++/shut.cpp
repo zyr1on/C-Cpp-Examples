@@ -1,5 +1,5 @@
 /* 
-g++ shutDown.cpp -o shutDown.exe -static-libstdc++ -static -static-libgcc
+g++ shut.cpp -o shut.exe -static-libstdc++ -static -static-libgcc
 'if output file is shutdown.exe it won't work, idk why :)'
 */
 
