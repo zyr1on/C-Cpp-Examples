@@ -31,11 +31,11 @@ int main() {
     cout << "> ";cin >> pref;
     switch (pref){
     case 1:
-        cout << "Time: ";cin >> time;
+        cout << "Time for mins: ";cin >> time;
         shut_min(time);
         break;
     case 2:
-        cout << "Time: ";cin >> time;
+        cout << "Time for secs: ";cin >> time;
         shut_sec(time);
         break;
     case 3:
