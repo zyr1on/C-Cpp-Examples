@@ -4,10 +4,12 @@ g++ shut.cpp -o shut.exe -static-libstdc++ -static -static-libgcc
 */
 
 #include <iostream>
-#include <string>
-using std::string;
+#include <string> // to_string(); used to convert int to string
+
+using std::string; 
 using std::cout;
 using std::cin;
+
 void shut_min(int min) {
     cout << min << " Minustes to shutdown\n";
     min = min * 60;
