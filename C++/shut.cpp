@@ -4,22 +4,22 @@ g++ shut.cpp -o shut.exe -static-libstdc++ -static -static-libgcc
 */
 
 #include <iostream>
-#include <string> // to_string(); used to convert int to string
 
-using std::string; 
+using std::string;
 using std::cout;
 using std::cin;
+using std::to_string;
 
 void shut_min(int min) {
     cout << min << " Minustes to shutdown\n";
     min = min * 60;
-    string min_ = std::to_string(min);
+    string min_ = to_string(min);
     string cmd = "shutdown -s -f -t " + min_;
     system(cmd.c_str());
 }
 void shut_sec(int sec) {
     cout << sec << " Seconds to shutdown\n";
-    string sec_ = std::to_string(sec);
+    string sec_ = to_string(sec);
     string cmd = "shutdown -s -f -t " + sec_;
     system(cmd.c_str());
 }
@@ -33,11 +33,11 @@ int main() {
     cout << "> ";cin >> pref;
     switch (pref){
     case 1:
-        cout << "Time for mins: ";cin >> time;
+        cout << "Time: ";cin >> time;
         shut_min(time);
         break;
     case 2:
-        cout << "Time for secs: ";cin >> time;
+        cout << "Time: ";cin >> time;
         shut_sec(time);
         break;
     case 3:
