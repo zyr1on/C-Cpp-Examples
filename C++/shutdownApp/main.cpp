@@ -1,4 +1,4 @@
-/*  g++ shut.cpp -o shut.exe -static-libstdc++ -static -static-libgcc
+/*  g++ main.cpp -o shut.exe/shut.o -static-libstdc++ -static -static-libgcc
     'if output file is shutdown.exe it won't work, idk why :)'
 */
 #include <iostream>
