@@ -1,6 +1,3 @@
-/*  g++ shut.cpp -o shut.exe -static-libstdc++ -static -static-libgcc
-    'if output file is shutdown.exe it won't work, idk why :)'
-*/
 #include <iostream>
 using std::string;
 using std::cout;
