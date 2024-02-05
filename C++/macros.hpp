@@ -17,4 +17,3 @@
 
 #define strToInt(val) stoi(val)
 #define intToStr(val) std::to_string(val)
-
