@@ -3,10 +3,11 @@
 // !!!!! all functions working with int arrays
 // Author: Semih Özdemir
 
-const void printArr(int arr[],int size) {
-    for(int i=0;i<size;i++)
-        printf("%d ",arr[i]);
-}
+// const void printArr(int arr[],int size) {
+//    for(int i=0;i<size;i++)
+//        printf("%d ",arr[i]);
+//}
+const void printArr(int *arr,int size) { for(int i=0;i<size;i++) printf("%d ",arr[i]); }
 
 // reverse array
 const void reverseArr(int arr[],int size) {
