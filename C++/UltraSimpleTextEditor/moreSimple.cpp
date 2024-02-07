@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     int count = 1;
     bool cont = true;
     if(file.is_open()) {
-        cout << "Type 'quit' to exit the program\n";
+        cout << "Type ':q' to exit the program\n";
         while(getline(file,line)) {
             cout << count << " " << line << "\n";
             count++;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         while(cont) {
             cout << count << " ";
             getline(cin,line);
-            if(line == "quit") {
+            if(line == ":q") {
                 file.close();
                 cont = false;
             }
