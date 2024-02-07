@@ -1,2 +1,2 @@
-# C-Cpp-Examples
-C/C++ journey
+# C-Cpp Projects on my 'c' journey
+C/C++ Projects
