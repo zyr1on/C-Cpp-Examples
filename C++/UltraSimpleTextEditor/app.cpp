@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
         EditFile(fileName);
     }
     else {
-        cout << "File not exists. Writing file. Type ':q' or 'Ctrl-C' to exit.\n";
+        cout << "File not exists. Writing file. Type ':q' to exit.\n";
         WriteFile(fileName);
     }
     return 0;
