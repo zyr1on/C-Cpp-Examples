@@ -24,7 +24,7 @@ void EditFile(string fileName) { // reads and edits file contents
         while(cont) {
             cout << count << " ";
             getline(cin,line);
-            if(line == "quit") {
+            if(line == ":q") {
                 file.close();
                 cont = false;
             }
@@ -36,8 +36,6 @@ void EditFile(string fileName) { // reads and edits file contents
         file.close();
     }
 }
-
-
 void ReadFile(string fileName) { // reads file contents;
     ifstream file (fileName);
     string line;
@@ -59,7 +57,7 @@ void WriteFile(string fileName) {
         while(cont) {
             cout << count << " ";
             getline(cin,line);
-            if(line == "quit") {
+            if(line == ":q") {
                 myFile.close();
                 cont = false;
             }
@@ -91,11 +89,11 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
     if(fileExists(fileName)) {
-        cout << "File exists. Editing file. Type 'quit' or 'Ctrl-C' to exit.\n";
+        cout << "File exists. Editing file. Type ':q' to exit.\n";
         EditFile(fileName);
     }
     else {
-        cout << "File not exists. Writing file. Type 'quit' or 'Ctrl-C' to exit.\n";
+        cout << "File not exists. Writing file. Type ':q' or 'Ctrl-C' to exit.\n";
         WriteFile(fileName);
     }
     return 0;
