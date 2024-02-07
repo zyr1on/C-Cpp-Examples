@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
                 count++;
             }
         }
+        file.close();
     }
     return 0;
 }
