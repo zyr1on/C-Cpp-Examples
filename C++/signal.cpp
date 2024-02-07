@@ -7,7 +7,7 @@ void signal_callback_handler(int signum) {
 int main(){
    signal(SIGINT, signal_callback_handler);
    while(true){
-      std::cout << "Program processing..." << std::endl;
+      std::cout << "processing..." << std::endl;
       sleep(1);
    }
    return EXIT_SUCCESS;
