@@ -1,6 +1,6 @@
+//same app but more simple, less code, less space usage, more fast
 #include <iostream>
 #include <fstream>
-
 using std::cout;
 using std::cin;
 using std::fstream;
