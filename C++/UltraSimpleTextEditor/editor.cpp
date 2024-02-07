@@ -1,3 +1,4 @@
+// command line ultra mega simple text editor
 #include <iostream>
 #include <string>
 #include <fstream>
