@@ -6,8 +6,7 @@ using std::cin;
 using std::fstream;
 using std::string;
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     char *fileName = argv[1];
     if(fileName == NULL) {
         puts("Enter file name as argument | ./app <filename>\n");
