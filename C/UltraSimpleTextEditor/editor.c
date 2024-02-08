@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #define BUFFER_SIZE 1024
 
@@ -21,12 +20,12 @@ void writeFile(char *fileName)  {
     FILE *file;
     file = fopen(fileName,"w");
     char string[BUFFER_SIZE];
-    bool cont = true;
     int counter = 1;
-    while(cont) {
+    while(true) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0) {
+            break;
             exit(EXIT_SUCCESS);
         }
         fputs(string,file);
@@ -36,7 +35,6 @@ void writeFile(char *fileName)  {
 }
 void editFile(char *fileName) {
     int counter = 1;
-    bool cont = true;
     FILE *file;
     file = fopen(fileName,"r+");
     char string[BUFFER_SIZE];
@@ -44,10 +42,11 @@ void editFile(char *fileName) {
         printf("%d %s",counter,string);
         counter++;
     }
-    while(cont) {
+    while(true) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0) {
+            break;
             exit(EXIT_SUCCESS);
         }
         fputs(string,file);
@@ -56,11 +55,9 @@ void editFile(char *fileName) {
     fclose(file);
 }
 
-int fileExists(char *fileName)
-{
+int fileExists(char *fileName) {
     FILE *file;
-    if ((file = fopen(fileName, "r")))
-    {
+    if ((file = fopen(fileName, "r"))) {
         fclose(file);
         return 1;
     }
