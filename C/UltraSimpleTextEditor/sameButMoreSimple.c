@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #define BUFFER_SIZE 1024
 
@@ -20,7 +19,7 @@ int main(int argc, char const *argv[]) {
         printf("%d %s",counter,string);
         counter++;
     }
-    while(true) {
+    while(1) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0)
