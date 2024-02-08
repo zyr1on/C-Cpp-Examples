@@ -37,11 +37,6 @@ void digits_to_array(long int number, int arr[], int size) {
         temp /= 10;
         count++;
     }
-    // for(int i=0;i<size/2;i++) { // reversing array
-    //     int temp_ = arr[i];
-    //     arr[i] = arr[size-1-i];
-    //     arr[size-1-i] = temp_;
-    // }
 }
 
 void printArrLikePython(int arr[],int size) {
