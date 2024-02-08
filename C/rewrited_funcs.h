@@ -19,3 +19,9 @@ int _strcmp(char *_source,char *_target) { // if(_strcmp(string,string)) If the 
 			return 0;
 	}
 }
+void readInt(int *val) {
+	scanf("%d",val);
+}
+void readChar(char *c) {
+	scanf("%c",c);
+}
