@@ -15,16 +15,16 @@ int main(int argc, char const *argv[]) {
     file = fopen(fileName,"a+");
     char string[BUFFER_SIZE];
     int counter = 1;
-    bool cont = true;
     puts("Type ':q' to exit the program");
     while(fgets(string,BUFFER_SIZE,file)) {
         printf("%d %s",counter,string);
         counter++;
     }
-    while(cont) {
+    while(true) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0)
+            break;
             exit(EXIT_SUCCESS);
         fputs(string,file);
         counter++;
