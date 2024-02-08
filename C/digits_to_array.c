@@ -44,6 +44,18 @@ void digits_to_array(long int number, int arr[], int size) {
     }
 }
 
+void printArrLikePython(int arr[],int size) {
+    for(int i=0;i<size;i++) {
+        if(i == 0)
+            printf("[%d,",arr[i]);
+        else if(i == size-1)
+            printf("%d",arr[i]);
+        else 
+            printf("%d,",arr[i]);
+    }
+    printf("]\n");
+}
+
 int main() {
     long int number;                     // defines long integer number that will attach variable with scanf function
     printf(">");
@@ -51,6 +63,7 @@ int main() {
     int size = total_digits(number);     // calculates the size of the array we will create
     int arr[size];                       // Creates an array containing each digit of the number
     digits_to_array(number,arr,size);
-    printArr(arr,size,2);                // prints digits with mode 2(with new line)
+    //printArr(arr,size,2);                // prints digits with mode 2(with new line)
+    printArrLikePython(arr,size);           // prints digits in array like python.
     
 }
