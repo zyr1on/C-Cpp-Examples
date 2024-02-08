@@ -24,7 +24,6 @@ int main(int argc, char const *argv[]) {
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0) {
             break;
-            exit(EXIT_SUCCESS);
         }
         fputs(string,file);
         counter++;
