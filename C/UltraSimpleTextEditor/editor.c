@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define BUFFER_SIZE 1024
 
@@ -26,7 +27,6 @@ void writeFile(char *fileName)  {
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0) {
             break;
-            exit(EXIT_SUCCESS);
         }
         fputs(string,file);
         counter++;
@@ -45,10 +45,8 @@ void editFile(char *fileName) {
     while(1) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
-        if(strcmp(string,":q\n") == 0) {
+        if(strcmp(string,":q\n") == 0)
             break;
-            exit(EXIT_SUCCESS);
-        }
         fputs(string,file);
         counter++;
     }
