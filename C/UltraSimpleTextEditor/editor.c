@@ -21,7 +21,7 @@ void writeFile(char *fileName)  {
     file = fopen(fileName,"w");
     char string[BUFFER_SIZE];
     int counter = 1;
-    while(true) {
+    while(1) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0) {
@@ -42,7 +42,7 @@ void editFile(char *fileName) {
         printf("%d %s",counter,string);
         counter++;
     }
-    while(true) {
+    while(1) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
         if(strcmp(string,":q\n") == 0) {
