@@ -22,9 +22,8 @@ int main(int argc, char const *argv[]) {
     while(1) {
         printf("%d ",counter);
         fgets(string,BUFFER_SIZE,stdin);
-        if(strcmp(string,":q\n") == 0) {
+        if(strcmp(string,":q\n") == 0)
             break;
-        }
         fputs(string,file);
         counter++;
     }
