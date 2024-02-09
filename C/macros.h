@@ -13,3 +13,5 @@
 
 #define array_size(arr) (*(&arr + 1)) - (arr)
 #define PRINTARRAY(arr) for(int i=0;i<array_size(arr);i++) printf("%d ",arr[i]);
+
+#define string char*
