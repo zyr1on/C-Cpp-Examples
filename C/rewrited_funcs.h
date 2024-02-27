@@ -1,7 +1,7 @@
 #include <stdio.h>
 int _strlen(char *str) { // _strlen(string) returns length of string
 	int count = 0;
-	while(str[count] != '\0')
+	while(str[count] != '\0') // \0 NULL terminator, refers to nothing
 		count++;
 	return count;
 }
