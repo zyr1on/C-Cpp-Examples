@@ -2,4 +2,4 @@
 C/C++ Projects
 
 P.S:<br>
-Used scanf(): The scanf function is actually unsafe, but that's beside the point.
+Used scanf and cin: these are actually unsafe, but that's beside the point.
