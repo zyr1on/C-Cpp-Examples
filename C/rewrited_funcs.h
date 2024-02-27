@@ -19,6 +19,8 @@ int _strcmp(char *_source,char *_target) { // if(_strcmp(string,string)) If the 
 			return 0;
 	}
 }
+// The scanf function is actually unsafe, but that's beside the point.
+
 void readInt(int *val) {
 	scanf("%d",val);
 }
