@@ -26,6 +26,14 @@ void* _memset(void *dst,int c,int len) {
 		b++;
 	}
 }
+/*
+	void _memset(char *dst,int c,int len) {
+ 		while(len--)
+   			*dst++ = c;
+	}
+
+
+*/
 
 void readInt(int *val) {
 	scanf("%d",val);
