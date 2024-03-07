@@ -20,12 +20,11 @@ int _strcmp(char *_source,char *_target) { // if(_strcmp(string,string)) If the 
 			return 0;
 	}
 }
-void* _memset(void *dst,int c,int len) {
-	unsigned char *b = dst;
-	while(len--) {
-		*b = c;
-		b++;
-	}
+void* _memset(void *dst,int c, size_t len) {
+	unsigned char* char_dst = dst;
+	while (len--)
+		*char_dst++ = c;
+	return dst;
 }
 /*	void _memset(char *dst,int c,int len) {
  		while(len--)
