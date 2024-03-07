@@ -1,5 +1,6 @@
 #include <stdio.h>
-int _strlen(char *str) { // _strlen(string) returns length of string
+
+size_t _strlen(char *str) { // _strlen(string) returns length of string
 	int count = 0;
 	while(str[count] != '\0') // \0 NULL terminator, refers to nothing
 		count++;
@@ -26,13 +27,10 @@ void* _memset(void *dst,int c,int len) {
 		b++;
 	}
 }
-/*
-	void _memset(char *dst,int c,int len) {
+/*	void _memset(char *dst,int c,int len) {
  		while(len--)
    			*dst++ = c;
 	}
-
-
 */
 
 void * _memcpy(void *dest,void *src,int n) { // copys src to dest
@@ -49,7 +47,6 @@ void * _memcpy(void *dest,void *src,int n) { // copys src to dest
 	}
 	return dest;
 }
-
 
 void readInt(int *val) {
 	scanf("%d",val);
