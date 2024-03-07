@@ -26,25 +26,17 @@ void* _memset(void *dst,int c, size_t len) {
 		*char_dst++ = c;
 	return dst;
 }
-/*	void _memset(char *dst,int c,int len) {
- 		while(len--)
-   			*dst++ = c;
-	}
-*/
 
-void * _memcpy(void *dest,void *src,int n) { // copys src to dest
-	if(dest==NULL) return NULL;
-	char *char_dest = (char*) dest;
-	char *char_src = (char*) src;
-	// for(int i=0;i<n;i++) {
-	// 	char_dest[i] = char_src[i];
-	// }
-	while (n--) {
-		*char_dest = *char_src;
-		*char_dest++;
-		*char_src++;
-	}
-	return dest;
+void* _memcpy(void *dst,void *src,size_t byte) { // copys src  to dst (byte one byte);
+    if(dst == NULL) return NULL;
+    unsigned char* buf1 = (char*) dst;
+    unsigned char* buf2 = (char*) src;
+    while(byte--)
+        *buf1++ = *buf2++;
+    return dst;
+	// _memcpy(&struct,&struct1,sizeof(struct1));
+	// _memcpy(array,array1,sizeof(array1));
+	// _memcpy(string,string1,x);
 }
 
 void readInt(int *val) {
