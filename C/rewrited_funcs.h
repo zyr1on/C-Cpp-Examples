@@ -35,6 +35,22 @@ void* _memset(void *dst,int c,int len) {
 
 */
 
+void * _memcpy(void *dest,void *src,int n) { // copys src to dest
+	if(dest==NULL) return NULL;
+	char *char_dest = (char*) dest;
+	char *char_src = (char*) src;
+	// for(int i=0;i<n;i++) {
+	// 	char_dest[i] = char_src[i];
+	// }
+	while (n--) {
+		*char_dest = *char_src;
+		*char_dest++;
+		*char_src++;
+	}
+	return dest;
+}
+
+
 void readInt(int *val) {
 	scanf("%d",val);
 }
