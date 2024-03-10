@@ -20,13 +20,33 @@ int _strcmp(char *_source,char *_target) { // if(_strcmp(string,string)) If the 
 			return 0;
 	}
 }
+char* toUpperCase(char* dst) { // char str[];
+	if (dst == NULL) return NULL;
+	while (*dst != '\0')
+		if(*dst >= 'a' && *dst <= 'z')
+			*dst++ = *dst - 32; //*dst++;
+	return dst;
+}
+char* toLowerCase(char* dst) { // char str[];
+	if(dst == NULL) return NULL;
+	while (*dst != '\0')
+		if(*dst >= 'A' && *dst <= 'Z')
+			*dst++ = *dst + 32; //*dst++;
+	return dst;
+}
+char* _strcpy(char* dst,const char* source) { // char str[];
+	if(dst == NULL) return NULL;
+	while(*source != '\0')
+		*dst++ = *source++;
+	*dst = '\0';
+	return dst;
+}
 void* _memset(void *dst,int c, size_t len) {
 	unsigned char* char_dst = dst;
 	while (len--)
 		*char_dst++ = c;
 	return dst;
 }
-
 void* _memcpy(void *dst,void *src,size_t byte) { // copys src  to dst (byte one byte);
     if(dst == NULL) return NULL;
     unsigned char* buf1 = (char*) dst;
