@@ -59,6 +59,22 @@ void* _memcpy(void *dst,void *src,size_t byte) { // copys src  to dst (byte one 
 	// _memcpy(string,string1,x);
 }
 
+char* _fgets(char* _string,size_t _bytes, FILE* _stream) {
+    int c,i = 0;
+    if(_bytes <= 0)
+        return _string;
+    
+    while(i < _bytes -1 && ((c = getc(_stream)) != EOF)) {
+        _string[i++] = c;
+        if(c == '\n')
+            break;
+    }
+    _string[i] = '\0';
+    if(i > 0)
+        return _string;
+    else
+        return NULL;
+}
 void readInt(int *val) {
 	scanf("%d",val);
 }
