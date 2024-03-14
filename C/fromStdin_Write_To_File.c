@@ -19,12 +19,17 @@ int main(int argc, char *argv[]) {
         }
         bool cont = true;
         char buffer[BUFFER_S];
-        while(cont) {
-                printf(">");
+		puts("type :q or :quit to exit.");
+		while(cont) {
+                printf("> ");
                 fgets(buffer,BUFFER_S,stdin);
-                if(strcmp(buffer,"quit\n") == 0 || strcmp(buffer,"exit\n") == 0)
-                        exit(EXIT_SUCCESS);
-                fputs(buffer,file);
+                if(strcmp(buffer,":quit\n") == 0 || strcmp(buffer,":q\n") == 0) {
+						fclose(file);
+						break;
+						/* exit(EXIT_SUCCESS); */
+				}
+				fputs(buffer,file);
         }
-        fclose(file);
+        /* fclose(file); */
 }
+
