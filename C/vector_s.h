@@ -21,7 +21,7 @@ int vector_push_back_s(vector_s* v,char* string) {
 int vector_size_s(vector_s* v) {
 	return v->size;
 }
-int show_vector_s(vector_s* v) {
+int vector_print_s(vector_s* v) {
 	if(v == NULL) return -1;
 	if(v->size == 0) {
 		puts("empty");
@@ -36,6 +36,15 @@ int show_vector_s(vector_s* v) {
     puts("");
     return 0;
 }
-int free_vector_s(vector_s* v){
+int vector_free_s(vector_s* v){
     free(v->data);
 }
+/*
+	vector_s v;
+	vector_init_s(&v);
+ 	vector_push_back_s(&v,"hello world");
+  	vector_print_s(&v);
+   	vector_free_s(&v);
+
+
+*/
