@@ -26,7 +26,7 @@ int vector_push_back(vector*v, int element) {
 int vector_size(vector *v) {
 	return v->size;
 }
-int show_vector(vector*v) {
+int vector_print(vector*v) {
 	if(v == NULL) return -1;
 	if(v->size == 0) {
 		puts("empty");
@@ -36,7 +36,7 @@ int show_vector(vector*v) {
     puts("");
     return 0;
 }
-int free_vector(vector*v){
+int vector_free(vector*v){
     free(v->data);
 }
 
@@ -45,6 +45,6 @@ int free_vector(vector*v){
  	vector v;
   	vector_init(&v)
 	vector_push_back(&v,element);
-	show_vector(&v);
-	free_vector(&v) 
+	vector_print(&v);
+	vector_free(&v) 
  */
