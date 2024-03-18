@@ -42,8 +42,9 @@ int free_vector(vector*v){
 
 /*
 	#include "vector.h"
- 	vector_init(vector*)
-	vector_push_back(&vector,element);
-	show_vector(&vector);
-	free_vector(vector*) 
+ 	vector v;
+  	vector_init(&v)
+	vector_push_back(&v,element);
+	show_vector(&v);
+	free_vector(&v) 
  */
