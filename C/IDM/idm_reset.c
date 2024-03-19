@@ -1,7 +1,9 @@
 #include <windows.h>
 #include <stdio.h>
 #include <string.h>
+
 #define MAX_KEY_LENGTH 255
+
 char* EnumerateKeys(HKEY hKeyRoot) {
     HKEY hKey;
     char* dest = NULL;
@@ -27,6 +29,7 @@ char* EnumerateKeys(HKEY hKeyRoot) {
     }
     return dest;
 }
+
 int main() {
     LPCSTR hKeyRoot = "HKEY_USERS";
     char* key = EnumerateKeys((HKEY)HKEY_USERS);
@@ -36,6 +39,7 @@ int main() {
 	    free(key);
     }
     printf("%s\n",keyPath);
+    
     HKEY hKey;
     LONG result = RegOpenKeyEx(HKEY_USERS, keyPath, 0, KEY_READ, &hKey);
     if (result == ERROR_SUCCESS) {
@@ -45,10 +49,10 @@ int main() {
         	if (result == ERROR_SUCCESS) {
             	MessageBox(NULL, "Succesfuly deleted", "Succesfull", MB_OK | MB_ICONINFORMATION);
         		int result_ = MessageBox(NULL, "Are you want to restart computer", "Restart", MB_YESNO | MB_ICONQUESTION);
-        		if(result_ == IDYES)
-        		{
+        		if(result_ == IDYES) {
         			RegCloseKey(hKey);
-					ExitWindowsEx(EWX_REBOOT, 0);
+					//ExitWindowsEx(EWX_REBOOT, 0); didn't work idk why.
+					system("shutdown.exe /r");
 				}
 			} else {
             	MessageBox(NULL, "Unsuccesfull", "Error!", MB_OK | MB_ICONERROR);
