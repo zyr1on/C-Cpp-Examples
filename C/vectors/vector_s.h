@@ -36,7 +36,7 @@ int vector_print_s(vector_s* v) {
     puts("");
     return 0;
 }
-int vector_free_s(vector_s* v){
+int destroy_vector_s(vector_s* v){
     free(v->data);
 }
 /*
