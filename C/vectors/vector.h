@@ -68,7 +68,7 @@ int vector_delete(vector* v,int element) { //vector_delete(&v,element);
         return 0;
     }
     else {
-        fprintf(stderr,"Element not found\n");
+        fprintf(stderr,"vector_delete: Element not found\n");
         return -1;
     }
 }
@@ -104,9 +104,10 @@ int vector_pop(vector* v) {
         return 0;
     }
 }
+
 int vector_multiply(vector* v) {
      if (v == NULL || v->size == 0) {
-        fprintf(stderr, "Error: Vector is empty or NULL\n");
+        fprintf(stderr, "vector_multiply: Vector is empty or NULL\n");
         return -1;
     }
     int result = 1;
@@ -117,7 +118,7 @@ int vector_multiply(vector* v) {
 }
 int vector_sum(vector* v) {
      if (v == NULL || v->size == 0) {
-        fprintf(stderr, "Error: Vector is empty or NULL\n");
+        fprintf(stderr, "vector_sum: Vector is empty or NULL\n");
         return -1;
     }
     int sum = 0;
@@ -126,9 +127,10 @@ int vector_sum(vector* v) {
     }
     return sum;
 }
+
 float vector_avg(vector* v) {
     if (v == NULL || v->size == 0) {
-        fprintf(stderr, "Error: Vector is empty or NULL\n");
+        fprintf(stderr, "vector_avg: Vector is empty or NULL\n");
         return -1;
     }
     int sum = 0;
@@ -137,11 +139,26 @@ float vector_avg(vector* v) {
     }
     return (float) ((float)sum/(float)v->size);
 }
+
+int vector_get_last_element(vector* v) {
+    if (v == NULL || v->size == 0) {
+        fprintf(stderr, "vector_get_last_element: Vector is empty or NULL\n");
+        return -1;
+    }
+    if(v->size == 0) {
+        return v->data[0];
+    }
+    else {
+        return v->data[v->size-1];
+    }   
+}
+
 int vector_max(vector* v) {
     if (v == NULL || v->size == 0) {
         fprintf(stderr, "Error: Vector is empty or NULL\n");
         return -1;
     }
+
     int max = v->data[0];
     for(int i=1;i<v->size;i++) {
         if(v->data[i] > max) {
@@ -163,7 +180,6 @@ int vector_min(vector* v) {
     }
     return min;
 }
-
 int vector_size(vector *v) {
 	return v->size;
 }
