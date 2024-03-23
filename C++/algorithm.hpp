@@ -111,6 +111,14 @@ int closeValToAvarageValue(int arr[],int size) {
 			}
 		}
 	}
+bool isOnlySpace(const std::string& str) {
+    for(char c:str) {
+        if(!std::isspace(c)) {
+            return false;
+        }
+    }
+    return true;
+}
 //	cout << "\n";
 //	cout << "Avarage: " << avVal << "\n";
 //	cout << "The closet difference to the avarage: "<< offset << "\n";
