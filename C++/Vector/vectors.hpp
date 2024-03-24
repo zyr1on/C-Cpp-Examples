@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+//test github
 template <typename T>
 class Vector {
 	public:
@@ -209,5 +210,3 @@ class Vector {
 			return true;
 		}
 };
-
-//degisiklik
