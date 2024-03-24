@@ -209,3 +209,5 @@ class Vector {
 			return true;
 		}
 };
+
+//degisiklik
