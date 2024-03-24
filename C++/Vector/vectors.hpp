@@ -1,6 +1,5 @@
 #include <iostream>
 #include <algorithm>
-//test github
 template <typename T>
 class Vector {
 	public:
