@@ -144,6 +144,35 @@ class Vector {
 			}
 			return 0;
 		}
+		int assign(T old_element,T new_element) {
+			if(!control("assign"))
+				return -1;
+			int index=0;
+			for(int i=0;i<size_vec;i++)
+				if(old_element == vector[i]) {
+					index = i;
+					break;
+				}
+
+			vector[index] = new_element;
+			return 0;
+		}
+		int index_at(T element) {
+			if(!control("assign"))
+				return -1;
+			int index=-1;
+			for(int i=0;i<size_vec;i++)
+				if(element == vector[i]) {
+					index = i;
+					break;
+				}
+			if(index!=-1)
+				return index;
+			else {
+				std::cerr<<"Element not found in vector\n";
+				return -1;
+			}
+		}
 		int begin() {
 			if(!control("begin"))
 				return -1;
@@ -179,5 +208,4 @@ class Vector {
         	}
 			return true;
 		}
-	
 };
