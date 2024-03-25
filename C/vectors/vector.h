@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// I WILL OPTIMIZE IT asap!!!
+
 typedef struct {
     int* data;
     size_t size;
