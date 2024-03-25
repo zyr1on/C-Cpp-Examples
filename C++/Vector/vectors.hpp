@@ -1,32 +1,33 @@
 #include <iostream>
 #include <algorithm>
+
+#define INITIAL_CAPACITY 5
+
 template <typename T>
 class Vector {
 	public:
 		Vector() {
 			size_vec = 0;
-			this->capacity = 5;
-			vector = new T[5];
+			this->capacity = INITIAL_CAPACITY;
+			vector = new T[INITIAL_CAPACITY];
 		}
-		Vector(int cap) {
+		Vector(size_t cap) {
 			size_vec = 0;
 			this->capacity = cap;
 			vector = new T[cap];
 		}
 		int push_back(T element) {
-			if (vector == nullptr || capacity == 0) {
-            	std::cerr << "push_back: Vector is null or empty\n";
+			if (vector == nullptr) {
+            	std::cerr << "push_back: Vector is null\n";
             	return -1;
         	}
 			if(size_vec >= capacity) {
-				resize(capacity *2);
-				vector[size_vec] = element;
-				size_vec++;
+				if(resize(capacity * 1.5) != 0) {
+					std::cerr << "push_back: Resize operation failed\n";
+					return -1;
+				}
 			}
-			else {
-				vector[size_vec] = element;
-				size_vec++;
-			}
+			vector[size_vec++] = element;
 			return 0;
 		}
 		int print_vector() {
@@ -58,10 +59,14 @@ class Vector {
             	return -1;
         	}
 			T* tempData = new T[capacity];
+			if(tempData == nullptr) {
+				std::cerr << "resize: Memory allocation failed!\n";
+				return -1;
+			}
 			size_vec--;
 			for(int i=0;i<size_vec;i++)
 				tempData[i] = vector[i];
-			delete[] vector;
+			delete[] vector; // deleting vector;
 			vector = tempData;
 			return 0;
 		}
@@ -77,6 +82,10 @@ class Vector {
 			}
 			if(index != -1) {
 				T* tempData = new T[capacity];
+				if(tempData == nullptr) {
+					std::cerr << "resize: Memory allocation failed!\n";
+					return -1;
+				}
 				for(int i=0;i<index;i++)
 					tempData[i] = vector[i];
 				for(int i=index;i<size_vec;i++)
@@ -147,18 +156,23 @@ class Vector {
 		int assign(T old_element,T new_element) {
 			if(!control("assign"))
 				return -1;
-			int index=0;
+			int index=-1;
 			for(int i=0;i<size_vec;i++)
 				if(old_element == vector[i]) {
 					index = i;
 					break;
 				}
-
-			vector[index] = new_element;
-			return 0;
+			if(index != -1) {
+				vector[index] = new_element;
+				return 0;
+			}
+			else {
+				std::cerr<<"Element "<<old_element<<" not found in vector\n";
+				return -1;
+			}
 		}
 		int index_at(T element) {
-			if(!control("assign"))
+			if(!control("index_at"))
 				return -1;
 			int index=-1;
 			for(int i=0;i<size_vec;i++)
@@ -184,22 +198,30 @@ class Vector {
 			return vector[size_vec-1];
 		}
 		~Vector() {
-			delete[] vector;
-			vector = nullptr;
-			size_vec = 0;
-			capacity = 0;
+    		if (vector != nullptr) {
+        		delete[] vector;
+        		vector = nullptr;
+    		}
+    		size_vec = 0;
+    		capacity = 0;
 		}
+		
 	private:
 		T* vector;
 		size_t size_vec;
 		size_t capacity;
-		void resize(int size) {
+		int resize(size_t size) {
 			T* tempData = new T[size];
+			if(tempData == nullptr) {
+				std::cerr << "resize: Memory allocation failed!\n";
+				return -1;
+			}
 			for(int i=0;i<this->size_vec;i++)
 				tempData[i] = vector[i];
 			delete[] vector;
 			vector = tempData;
 			this->capacity = size;
+			return 0;
 		}
 		bool control(const char* name_) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
@@ -208,4 +230,5 @@ class Vector {
         	}
 			return true;
 		}
+		
 };
