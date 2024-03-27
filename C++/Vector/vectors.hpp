@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
-#define INITIAL_CAPACITY 5
+#define INITIAL_CAPACITY 5 // LOOK AT HERE!
 
 
 template <typename T>
@@ -96,7 +96,7 @@ class Vector {
 				size_vec--;
 			}
 			else {
-				std::cerr<<"Element not found!\n";
+			// 	std::cerr<<"Element not found!\n";
 				return -1;
 			}
 			return 0;
@@ -129,7 +129,6 @@ class Vector {
 				std::cout << "Vector size: "<<size_vec<<"\n";
 				std::cout << "Vector capacity: "<<capacity<<"\n";
 				std::cout << "Vector rate: %"<< (float)size_vec / (float)capacity*100 <<"\n";
-				std::cout << "Vector address: "<<vector<<"\n";
 				return 0;
 			}
 			else {
@@ -188,17 +187,6 @@ class Vector {
 				return -1;
 			}
 		}
-		// int begin() {
-		// 	if(!control("begin"))
-		// 		return -1;
-		// 	return vector[0];
-		// }
-		// int end() {
-		// 	if(!control("end"))
-		// 		return -1;
-		// 	return vector[size_vec-1];
-		// }
-
 		~Vector() {
     		if (vector != nullptr) {
         		delete[] vector;
@@ -208,28 +196,31 @@ class Vector {
     		capacity = 0;
 		}
 		
-		T* begin() const {
-			return vector;
-		}
-		T* end() const {
-			return vector + size_vec;
-		}
-		template <typename U>
-		friend std::ostream& operator<<(std::ostream& os, Vector<U>& vec) {
-			os << "[";
-			for(auto it = vec.begin(); it != vec.end(); it++) {
-				if(it != vec.begin()) {
-					os << ",";
+		T* begin() const {return vector;}
+		T* end() const {return vector + size_vec;}
+		
+		friend std::ostream& operator<<(std::ostream& os, Vector<T>& vec) {
+			if(vec.vector == nullptr)
+				return os << "Vector is null!";
+			if(std::is_same_v<T,std::string>) {
+				os << "[\"";
+				for(auto it = vec.begin(); it != vec.end(); it++) {
+					if(it != vec.begin())
+						os << ",\"";
+					os<<*it << '"';
 				}
-				os<<*it;
+			}
+			else {
+				os << "[";
+				for(auto it = vec.begin(); it != vec.end(); it++) {
+					if(it != vec.begin())
+						os << ",";
+					os<<*it;
+				}
 			}
 			os<<"]";
 			return os;
 		}
-		
-		//friend std::ostream& operator<<(std::ostream& os,Vector<int>& vec);
-		//friend std::ostream& operator<<(std::ostream& os,Vector<std::string>& vec);
-
 	private:
 		T* vector;
 		size_t size_vec;
@@ -256,24 +247,3 @@ class Vector {
 		}
 		
 };
-
-// template <typename T>
-// std::ostream& operator<<(std::ostream& os, Vector<T>& vec) {
-// 	os << "[";
-// 	for(int i=0;i<vec.size();i++) {
-// 		if(i!= vec.size() -1) {
-// 			os <<vec.vector[i]<<",";
-// 		}
-// 		else {
-// 			os << vec.vector[i];
-// 		}
-// 	}
-
-// 	os << "]";
-// 	return os;
-// }
-
-
-
-			
-
