@@ -2,8 +2,6 @@
 #include <algorithm>
 
 #define INITIAL_CAPACITY 5 // LOOK AT HERE!
-
-
 template <typename T>
 class Vector {
 	public:
@@ -244,6 +242,5 @@ class Vector {
             	return false;
         	}
 			return true;
-		}
-		
+		}		
 };
