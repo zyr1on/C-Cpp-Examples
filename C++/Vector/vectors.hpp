@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
-#define INITIAL_CAPACITY 5 // LOOK AT HERE!
+#define INITIAL_CAPACITY 5 // YOU CAN CHANGE HERE!
 template <typename T>
 class Vector {
 	public:
@@ -29,7 +29,7 @@ class Vector {
 			vector[size_vec++] = element;
 			return 0;
 		}
-		int print_vector() {
+		int print_vector(void) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
             	std::cerr << "print_vector: Vector is null or empty\n";
             	return -1;
@@ -52,7 +52,7 @@ class Vector {
 			}
 			return 0;
 		}
-		int pop_back() {
+		int pop_back(void) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
             	std::cerr << "pop_back: Vector is null or empty\n";
             	return -1;
@@ -99,22 +99,22 @@ class Vector {
 			}
 			return 0;
 		}
-		int sort() {
+		int sort(void) {
 			if(!control("sort"))
 				return -1;
 			std::sort(vector,vector+size_vec);
 			return 0;
 		}
-		size_t size() {
+		size_t size(void) {
 			return size_vec;
 		}
-		size_t get_capacity() {
+		size_t get_capacity(void) {
 			return capacity;
 		}
-		T get_last_element() {
+		T get_last_element(void) {
 			return vector[size_vec-1];
 		}
-		bool empty() {
+		bool empty(void) {
 			if(size_vec == 0 ||capacity == 0) {
 				return true;
 			}
@@ -122,7 +122,7 @@ class Vector {
 				return false;
 			}
 		}
-		int status()  {
+		int status(void)  {
 			if(control("status")) {
 				std::cout << "Vector size: "<<size_vec<<"\n";
 				std::cout << "Vector capacity: "<<capacity<<"\n";
@@ -133,7 +133,7 @@ class Vector {
 				return -1;
 			}
 		}
-		int reverse() {
+		int reverse(void) {
 			if(!control("reverse"))
 				return -1;
 			for(int i=0;i<size_vec/2;i++) {
@@ -198,7 +198,7 @@ class Vector {
 		T* end() const {return vector + size_vec;}
 		
 		friend std::ostream& operator<<(std::ostream& os, Vector<T>& vec) {
-			if(vec.vector == nullptr)
+			if( vec.vector == nullptr)
 				return os << "Vector is null!";
 			if(std::is_same_v<T,std::string>) {
 				os << "[\"";
