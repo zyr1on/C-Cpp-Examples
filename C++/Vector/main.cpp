@@ -33,14 +33,5 @@ int main(int argc, char const *argv[]) {
     string_vec.status();
     string_vec.~Vector();           // deconstructor!
 
-    
-    
-    
-
-    
-
-    
-
-
     return 0;
 }
