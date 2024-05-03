@@ -48,8 +48,6 @@ class Vector {
 			}
 			return 0;
 		}
-
-
 		int print_vector(void) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
             	std::cerr << "print_vector: Vector is null or empty\n";
@@ -167,9 +165,8 @@ class Vector {
 		int fill(T value) {
 			if(!control("fill"))
 				return -1;
-			for(int i=0;i<size_vec;i++) {
+			for(int i=0;i<size_vec;i++)
 				vector[i] = value;
-			}
 			return 0;
 		}
 		int assign(T old_element,T new_element) {
