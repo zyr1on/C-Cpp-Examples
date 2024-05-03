@@ -1,4 +1,6 @@
 #include <iostream>
+#include <initializer_list>
+
 #define INITIAL_CAPACITY 5 // YOU CAN CHANGE HERE!
 template <typename T>
 class Vector {
@@ -7,6 +9,13 @@ class Vector {
 			size_vec = 0;
 			this->capacity = INITIAL_CAPACITY;
 			vector = new T[INITIAL_CAPACITY];
+		}
+		Vector(std::initializer_list<T> args) : size_vec(args.size()) , capacity(args.size()*2) {
+			vector = new T[capacity];
+			size_t i = 0;
+			for(const auto& element : args) {
+				vector[i++] = element;
+			}
 		}
 		Vector(size_t cap) {
 			size_vec = 0;
