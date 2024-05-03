@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <initializer_list>
 
 #define INITIAL_CAPACITY 5 // YOU CAN CHANGE HERE!
 template <typename T>
@@ -29,6 +30,24 @@ class Vector {
 			vector[size_vec++] = element;
 			return 0;
 		}
+		int push_back_list(std::initializer_list<T> args) {
+			if (vector == nullptr) {
+            	std::cerr << "push_back: Vector is null\n";
+            	return -1;
+        	}
+			if(size_vec >= capacity) {
+				if(resize(capacity * 1.5) != 0) {
+					std::cerr << "push_back: Resize operation failed\n";
+					return -1;
+				}
+			}
+			for(T item : args) {
+				vector[size_vec++] = item;
+			}
+			return 0;
+		}
+
+
 		int print_vector(void) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
             	std::cerr << "print_vector: Vector is null or empty\n";
@@ -196,7 +215,11 @@ class Vector {
 		
 		T* begin() const {return vector;}
 		T* end() const {return vector + size_vec;}
-		
+		T& operator[](size_t index) {
+			if(index >= size_vec)
+				throw std::out_of_range("Index out of range!");
+			return vector[index];
+		}
 		friend std::ostream& operator<<(std::ostream& os, Vector<T>& vec) {
 			if( vec.vector == nullptr)
 				return os << "Vector is null!";
