@@ -1,19 +1,22 @@
 #include <iostream>
 #include <algorithm>
-#include <initializer_list>
+
 
 #define INITIAL_CAPACITY 5 // YOU CAN CHANGE HERE!
 template <typename T>
 class Vector {
 	public:
-		Vector() {
-			size_vec = 0;
-			this->capacity = INITIAL_CAPACITY;
+		Vector()  : size_vec(0) , capacity(INITIAL_CAPACITY) {
 			vector = new T[INITIAL_CAPACITY];
 		}
-		Vector(size_t cap) {
-			size_vec = 0;
-			this->capacity = cap;
+		// vector<type>{t1,t2,t3....};
+		Vector(std::initializer_list<T> args) : size_vec(args.size()) , capacity(args.size()*2) {
+			vector = new T[capacity];
+			size_t i = 0;
+			for(const auto& element : args)
+				vector[i++] = element;
+		}
+		Vector(size_t cap)  : size_vec(0) , capacity(cap) {
 			vector = new T[cap];
 		}
 		// push_back_list(element)
@@ -31,7 +34,7 @@ class Vector {
 			vector[size_vec++] = element;
 			return 0;
 		}
-		// push_back_list({1,2,3,4,5....})
+		// push_back_list({t1,t2,t3,t4,t5....})
 		int push_back_list(std::initializer_list<T> args) {
 			if (vector == nullptr) {
             	std::cerr << "push_back: Vector is null\n";

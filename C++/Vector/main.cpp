@@ -22,16 +22,15 @@ int main(int argc, char const *argv[]) {
     int_vec.status();
     std::cout <<"\n";
 
-    Vector<std::string> string_vec;
+    Vector<std::string> string_vec{"hello","world"};
     // reverse,sort,delete,pop,push_back,fill, index_at
-    string_vec.push_back("hello");
-    string_vec.push_back("world");
     std::cout << string_vec <<" ";
     string_vec.assign("world","hi");
     std::cout << string_vec <<"\n";
     std::cout << "hi is index at:"<<string_vec.index_at("hi")<<"\n";
     string_vec.status();
     string_vec.~Vector();           // deconstructor!
+
 
     return 0;
 }

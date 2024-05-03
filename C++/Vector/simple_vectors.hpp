@@ -1,5 +1,4 @@
 #include <iostream>
-
 #define INITIAL_CAPACITY 5 // YOU CAN CHANGE HERE!
 template <typename T>
 class Vector {
@@ -100,6 +99,9 @@ class Vector {
 		T* begin() const {return vector;}
 		T* end() const {return vector + size_vec;}
 		T& operator[](size_t index) {
+			if(size_vec == 0) {
+				throw std::empty("vector empty!");	
+			}
 			if(index >= size_vec)
 				throw std::out_of_range("Index out of range!");
 			return vector[index];
