@@ -16,6 +16,7 @@ class Vector {
 			this->capacity = cap;
 			vector = new T[cap];
 		}
+		// push_back_list(element)
 		int push_back(T element) {
 			if (vector == nullptr) {
             	std::cerr << "push_back: Vector is null\n";
@@ -30,6 +31,7 @@ class Vector {
 			vector[size_vec++] = element;
 			return 0;
 		}
+		// push_back_list({1,2,3,4,5....})
 		int push_back_list(std::initializer_list<T> args) {
 			if (vector == nullptr) {
             	std::cerr << "push_back: Vector is null\n";
