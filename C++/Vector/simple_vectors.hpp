@@ -99,6 +99,11 @@ class Vector {
 		
 		T* begin() const {return vector;}
 		T* end() const {return vector + size_vec;}
+		T& operator[](size_t index) {
+			if(index >= size_vec)
+				throw std::out_of_range("Index out of range!");
+			return vector[index];
+		}
 	private:
 		T* vector;
 		size_t size_vec;
