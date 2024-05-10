@@ -22,36 +22,36 @@ class Vector {
 			this->capacity = cap;
 			vector = new T[cap];
 		}
-		int push_back(T element) {
+		void push_back(T element) {
 			if (vector == nullptr) {
             	std::cerr << "push_back: Vector is null\n";
-            	return -1;
+            	return;
         	}
 			if(size_vec >= capacity) {
 				if(resize(capacity * 1.5) != 0) {
 					std::cerr << "push_back: Resize operation failed\n";
-					return -1;
+					return;
 				}
 			}
 			vector[size_vec++] = element;
 			return 0;
 		}
-		int pop_back(void) {
+		void pop_back(void) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
             	std::cerr << "pop_back: Vector is null or empty\n";
-            	return -1;
+            	return;
         	}
 			T* tempData = new T[capacity];
 			if(tempData == nullptr) {
 				std::cerr << "resize: Memory allocation failed!\n";
-				return -1;
+				return;
 			}
 			size_vec--;
 			for(int i=0;i<size_vec;i++)
 				tempData[i] = vector[i];
 			delete[] vector; // deleting vector;
 			vector = tempData;
-			return 0;
+			return;
 		}
 		size_t size(void) {
 			return size_vec;
@@ -67,34 +67,30 @@ class Vector {
 				return false;
 			}
 		}
-		int status(void)  {
+		void status(void)  {
 			if(control("status")) {
 				std::cout << "Vector size: "<<size_vec<<"\n";
 				std::cout << "Vector capacity: "<<capacity<<"\n";
 				std::cout << "Vector rate: %"<< (float)size_vec / (float)capacity*100 <<"\n";
-				return 0;
+				return;
 			}
 			else {
-				return -1;
+				return;
 			}
 		}
-		int reverse(void) {
-			if(!control("reverse"))
-				return -1;
+		void reverse(void) {
+			if(!control("reverse")) return ;
 			for(int i=0;i<size_vec/2;i++) {
 				T temp = vector[i];
 				vector[i] = vector[size_vec -i -1];
 				vector[size_vec-i-1] = temp;
 			}
-			return 0;
+			return;
 		}
-		int fill(T value) {
-			if(!control("fill"))
-				return -1;
-			for(int i=0;i<size_vec;i++) {
-				vector[i] = value;
-			}
-			return 0;
+		void fill(T value) {
+			if(!control("fill")) return -1;
+			for(int i=0;i<size_vec;i++) vector[i] = value;
+			return;
 		}
 		~Vector() {
     		if (vector != nullptr) {
