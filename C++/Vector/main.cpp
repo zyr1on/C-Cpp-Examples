@@ -2,9 +2,13 @@
 
 int main(int argc, char const *argv[]) {    
     Vector<int> int_vec;
+    
     int_vec.push_back(13);
     int_vec.push_back(-12);
     int_vec.push_back(18);
+    int_vec.push_back_list({1,2,3,4,5});
+    int_vec.print_vector();
+    std::cout <<"\n";
     // int_vec.print_vector() or std::cout << vector;
     std::cout << int_vec <<" ";
     int_vec.reverse();              // reverse int vector;
