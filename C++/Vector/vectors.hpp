@@ -20,41 +20,33 @@ class Vector {
 			vector = new T[cap];
 		}
 		// push_back_list(element)
-		int push_back(T element) {
+		void push_back(T element) {
 			if (vector == nullptr) {
             	std::cerr << "push_back: Vector is null\n";
-            	return -1;
+            	return;
         	}
 			if(size_vec >= capacity) {
 				if(resize(capacity * 1.5) != 0) {
 					std::cerr << "push_back: Resize operation failed\n";
-					return -1;
+					return ;
 				}
 			}
 			vector[size_vec++] = element;
-			return 0;
+			return ;
 		}
 		// push_back_list({t1,t2,t3,t4,t5....})
-		int push_back_list(std::initializer_list<T> args) {
-			if (vector == nullptr) {
-            	std::cerr << "push_back: Vector is null\n";
-            	return -1;
-        	}
-			if(size_vec >= capacity) {
-				if(resize(capacity * 1.5) != 0) {
-					std::cerr << "push_back: Resize operation failed\n";
-					return -1;
+		void push_back_list(std::initializer_list<T> args) {
+			for(const auto& item : args) {
+				if(push_back(item) != 0) {
+					std::cerr << "push_back_list: Push_back operation failed\n";
+					return ;
 				}
 			}
-			for(T item : args) {
-				vector[size_vec++] = item;
-			}
-			return 0;
 		}
-		int print_vector(void) {
+		void print_vector(void) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
             	std::cerr << "print_vector: Vector is null or empty\n";
-            	return -1;
+            	return ;
         	}
 			if(!std::is_same_v<T,std::string>) {
 				std::cout << "[";
@@ -67,33 +59,29 @@ class Vector {
 			else {
 				std::cout << "[";
 				for(int i=0;i<size_vec;i++)
-					if(i!=size_vec-1)
-						std::cout << "'"<<vector[i]<<"'" << ",";
-					else
-						std::cout << "'"<<vector[i]<<"'" << "]\n";
+					if(i!=size_vec-1) std::cout << "'"<<vector[i]<<"'" << ",";
+					else std::cout << "'"<<vector[i]<<"'" << "]\n";
 			}
-			return 0;
+			return;
 		}
-		int pop_back(void) {
+		void pop_back(void) {
 			if (vector == nullptr || size_vec == 0 || capacity == 0) {
             	std::cerr << "pop_back: Vector is null or empty\n";
-            	return -1;
+            	return ;
         	}
 			T* tempData = new T[capacity];
 			if(tempData == nullptr) {
 				std::cerr << "resize: Memory allocation failed!\n";
-				return -1;
+				return;
 			}
 			size_vec--;
-			for(int i=0;i<size_vec;i++)
-				tempData[i] = vector[i];
+			for(int i=0;i<size_vec;i++) tempData[i] = vector[i];
 			delete[] vector; // deleting vector;
 			vector = tempData;
-			return 0;
+			return ;
 		}
-		int delete_element(T element) {
-			if(!control("delete_element"))
-				return -1;
+		void delete_element(T element) {
+			if(!control("delete_element")) return ;
 			int index=-1;
 			for(int i=0;i<size_vec;i++) {
 				if(vector[i] == element) {
@@ -105,27 +93,23 @@ class Vector {
 				T* tempData = new T[capacity];
 				if(tempData == nullptr) {
 					std::cerr << "resize: Memory allocation failed!\n";
-					return -1;
+					return ;
 				}
-				for(int i=0;i<index;i++)
-					tempData[i] = vector[i];
-				for(int i=index;i<size_vec;i++)
-					tempData[i] = vector[i];
+				for(int i=0;i<index;i++) tempData[i] = vector[i];
+				for(int i=index;i<size_vec;i++) tempData[i] = vector[i];
 				delete[] vector;
 				vector = tempData;
 				size_vec--;
 			}
 			else {
 			// 	std::cerr<<"Element not found!\n";
-				return -1;
+				return;
 			}
-			return 0;
+			return;
 		}
-		int sort(void) {
-			if(!control("sort"))
-				return -1;
+		void sort(void) {
+			if(!control("sort")) return ;
 			std::sort(vector,vector+size_vec);
-			return 0;
 		}
 		size_t size(void) {
 			return size_vec;
@@ -144,37 +128,34 @@ class Vector {
 				return false;
 			}
 		}
-		int status(void)  {
+		void status(void)  {
 			if(control("status")) {
 				std::cout << "Vector size: "<<size_vec<<"\n";
 				std::cout << "Vector capacity: "<<capacity<<"\n";
 				std::cout << "Vector rate: %"<< (float)size_vec / (float)capacity*100 <<"\n";
-				return 0;
+				return;
 			}
 			else {
-				return -1;
+				return;
 			}
 		}
-		int reverse(void) {
-			if(!control("reverse"))
-				return -1;
+		void reverse(void) {
+			if(!control("reverse")) return ;
 			for(int i=0;i<size_vec/2;i++) {
 				T temp = vector[i];
 				vector[i] = vector[size_vec -i -1];
 				vector[size_vec-i-1] = temp;
 			}
-			return 0;
+			return;
 		}
-		int fill(T value) {
-			if(!control("fill"))
-				return -1;
+		void fill(T value) {
+			if(!control("fill")) return;
 			for(int i=0;i<size_vec;i++)
 				vector[i] = value;
-			return 0;
+			return;
 		}
-		int assign(T old_element,T new_element) {
-			if(!control("assign"))
-				return -1;
+		void assign(T old_element,T new_element) {
+			if(!control("assign")) return;
 			int index=-1;
 			for(int i=0;i<size_vec;i++)
 				if(old_element == vector[i]) {
@@ -183,16 +164,15 @@ class Vector {
 				}
 			if(index != -1) {
 				vector[index] = new_element;
-				return 0;
+				return;
 			}
 			else {
 				std::cerr<<"Element "<<old_element<<" not found in vector\n";
-				return -1;
+				return;
 			}
 		}
 		int index_at(T element) {
-			if(!control("index_at"))
-				return -1;
+			if(!control("index_at")) return -1;
 			int index=-1;
 			for(int i=0;i<size_vec;i++)
 				if(element == vector[i]) {
@@ -224,7 +204,8 @@ class Vector {
 		}
 		friend std::ostream& operator<<(std::ostream& os, Vector<T>& vec) {
 			if( vec.vector == nullptr)
-				return os << "Vector is null!";
+				os << "Vector is null!";
+				return os;
 			if(std::is_same_v<T,std::string>) {
 				os << "[\"";
 				for(auto it = vec.begin(); it != vec.end(); it++) {
