@@ -1,4 +1,15 @@
 #include <stdio.h>
+#include <unistd.h>
+
+void* basicMalloc(size_t size) {
+    void* ptr = sbrk(size);
+    if(ptr == (void*) -1) return NULL;
+    return ptr;
+}
+void basicfree(void* ptr) {
+    ptr = NULL;
+}
+
 
 size_t _strlen(char *str) { // _strlen(string) returns length of string
 	int count = 0;
