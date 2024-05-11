@@ -9,8 +9,6 @@ void* basicMalloc(size_t size) {
 void basicfree(void* ptr) {
     ptr = NULL;
 }
-
-
 size_t _strlen(char *str) { // _strlen(string) returns length of string
 	int count = 0;
 	while(str[count] != '\0') // \0 NULL terminator, refers to nothing
