@@ -81,7 +81,9 @@ void readInt(int *val) {
 void readChar(char *c) {
 	scanf("%c",c);
 }
-void readStr(char * str) {
-	fgets(str,sizeof(str),stdin);
-	// If you declare the string as 'char *' it probably won't work (cause:size of string)
+void readStr(char* str, int size) {
+    fgets(str, size, stdin);
+    size_t length = strlen(str);
+    if (length > 0 && str[length - 1] == '\n')
+        str[length - 1] = '\0';
 }
