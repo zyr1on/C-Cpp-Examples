@@ -6,14 +6,17 @@ void* basicMalloc(size_t size) {
     if(ptr == (void*) -1) return NULL;
     return ptr;
 }
-void basicfree(void* ptr) {
-    ptr = NULL;
-}
+
 size_t _strlen(char *str) { // _strlen(string) returns length of string
-	int count = 0;
-	while(str[count] != '\0') // \0 NULL terminator, refers to nothing
-		count++;
-	return count;
+	int i=0,j=0;
+	while(str[i] != '\0') {
+		i++;
+		j++;
+		if(str[i] == '\n') {
+			j--;
+		}
+	}
+	return j;
 }
 int _strcmp(char *_source,char *_target) { // if(_strcmp(string,string)) If the same, the 'if' block returns true(1) if not, returns false(0)
 	if(_strlen(_source) != _strlen(_target))
