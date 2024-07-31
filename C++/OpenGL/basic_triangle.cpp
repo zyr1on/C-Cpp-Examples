@@ -14,7 +14,6 @@ const char* fssource = "#version 330 core\n"
 "    fragColor = vec4(1.0f,0.0f,0.0f, 1.0f);\n"
 "}\n";
 
-
 // triangle cords.
 // x,y,z cords of 3 points.
 float vertices[] = {
@@ -22,7 +21,6 @@ float vertices[] = {
     -0.5f,0.0f,0.0f,
     0.5f,0.0f,0.0f
 };
-
 
 //Objects that holds IDs
 unsigned int fragmentShader;
@@ -33,13 +31,11 @@ unsigned int VAO;
 
 int main(void)
 {
-    if (!glfwInit())
-        return -1;
-
+    if (!glfwInit()) return -1;
+    
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
     GLFWwindow* window = glfwCreateWindow(800, 600, "İLk Programım", NULL, NULL);
 
     if (window == NULL) {
@@ -47,7 +43,6 @@ int main(void)
         glfwTerminate();
         return -1;
     }
-
     glfwMakeContextCurrent(window);
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
