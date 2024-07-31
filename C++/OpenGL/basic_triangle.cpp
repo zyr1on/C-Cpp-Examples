@@ -16,6 +16,7 @@ const char* fssource = "#version 330 core\n"
 
 
 // triangle cords.
+// x,y,z cords of 3 points.
 float vertices[] = {
     0.0f,0.5f,0.0f,
     -0.5f,0.0f,0.0f,
@@ -35,27 +36,20 @@ int main(void)
     if (!glfwInit())
         return -1;
 
-
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWwindow* window = glfwCreateWindow(800, 600, "İLk Programım", NULL, NULL);
 
-
-    if (window == NULL)
-    {
+    if (window == NULL) {
         std::cout << "Pencere Olusturulamadi" << std::endl;
-
         glfwTerminate();
-
         return -1;
     }
 
     glfwMakeContextCurrent(window);
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
@@ -76,21 +70,15 @@ int main(void)
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
 
-    //creating vertex array object
-    glGenVertexArrays(1, &VAO);
-    //creating vertex buffer object
-    glGenBuffers(1, &VBO);
+    glGenVertexArrays(1, &VAO); //creating vertex array object
+    glGenBuffers(1, &VBO); //creating vertex buffer object
 
-    //enabling vertex array
-    glBindVertexArray(VAO);
-    //enabling vertex buffer
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    //attaching point(or verticles) datas to vertex buffer
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    //attribute pointer ataching.
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    //enabling attribute
-    glEnableVertexAttribArray(0);
+    
+    glBindVertexArray(VAO);//enabling vertex array
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);//enabling vertex buffer
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //attaching point(or verticles) datas to vertex buffer
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);//attribute pointer ataching.
+    glEnableVertexAttribArray(0);//enabling attribute
 
     glfwSwapInterval(1); // for vsync
 
@@ -100,19 +88,13 @@ int main(void)
         glClearColor(0.0f, 0.4f, 0.7f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        //enabling program for window
-        glUseProgram(shaderProgram);
-        //enabling vertex array object
-        glBindVertexArray(VAO);
-        //sendin draw command
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-
+        glUseProgram(shaderProgram);//enabling program for window
+        glBindVertexArray(VAO);//enabling vertex array object
+        glDrawArrays(GL_TRIANGLES, 0, 3);//sendin draw command
 
         glfwSwapBuffers(window);
-
         glfwPollEvents();
     }
     glfwDestroyWindow(window);
     glfwTerminate();
-
 }
