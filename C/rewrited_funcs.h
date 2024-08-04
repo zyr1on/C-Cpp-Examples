@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
+
+// ((void*) -1)-> invalid adress;
+// ((void*) 0) -> null adress;
 void* basicMalloc(size_t size) {
     void* ptr = sbrk(size);
     if(ptr == (void*) -1) return NULL;
@@ -24,12 +27,9 @@ int _strcmp(char *_source,char *_target) { // if(_strcmp(string,string)) If the 
 	else {
 		int i = 0;
 		while(i < _strlen(_source))
-			if(_source[i] == _target[i])
-				i++;
-		if(i == _strlen(_source))
-			return 1;
-		else
-			return 0;
+			if(_source[i] == _target[i]) i++;
+		if(i == _strlen(_source)) return 1;
+		else return 0;
 	}
 }
 char* toUpperCase(char* dst) { // char str[];
