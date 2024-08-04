@@ -36,7 +36,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    GLFWwindow* window = glfwCreateWindow(800, 600, "İLk Programım", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Window", NULL, NULL);
 
     if (window == NULL) {
         std::cout << "Pencere Olusturulamadi" << std::endl;
