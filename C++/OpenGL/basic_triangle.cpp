@@ -39,7 +39,7 @@ int main(void)
     GLFWwindow* window = glfwCreateWindow(800, 600, "Window", NULL, NULL);
 
     if (window == NULL) {
-        std::cout << "Pencere Olusturulamadi" << std::endl;
+        std::cout << "Window does not createded." << std::endl;
         glfwTerminate();
         return -1;
     }
