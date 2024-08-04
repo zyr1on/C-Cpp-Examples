@@ -15,8 +15,9 @@ namespace Math
         std::uniform_int_distribution<int> dist(min,max);
         return dist(rng);
     }
-	struct complex 
-	{
+    
+    struct complex 
+    {
         long double real;
         long double im;
         complex(): im(0),real(0) {}
