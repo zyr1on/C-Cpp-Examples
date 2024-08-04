@@ -32,7 +32,7 @@ unsigned int VAO;
 int main(void)
 {
     if (!glfwInit()) return -1;
-    
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -68,12 +68,15 @@ int main(void)
     glGenVertexArrays(1, &VAO); //creating vertex array object
     glGenBuffers(1, &VBO); //creating vertex buffer object
 
-    
+
     glBindVertexArray(VAO);//enabling vertex array
     glBindBuffer(GL_ARRAY_BUFFER, VBO);//enabling vertex buffer
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //attaching point(or verticles) datas to vertex buffer
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);//attribute pointer ataching.
     glEnableVertexAttribArray(0);//enabling attribute
+
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
 
     glfwSwapInterval(1); // for vsync
 
@@ -90,6 +93,10 @@ int main(void)
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+
     glfwDestroyWindow(window);
     glfwTerminate();
 }
