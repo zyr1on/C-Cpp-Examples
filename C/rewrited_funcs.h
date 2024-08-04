@@ -1,23 +1,20 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
 // ((void*) -1)-> invalid adress;
 // ((void*) 0) -> null adress;
 void* basicMalloc(size_t size) {
     void* ptr = sbrk(size);
-    if(ptr == (void*) -1) return NULL;
+    if(ptr == (void*) -1) return NULL; // or return ((void*)0);
     return ptr;
 }
-
 size_t _strlen(char *str) { // _strlen(string) returns length of string
 	int i=0,j=0;
 	while(str[i] != '\0') {
 		i++;
 		j++;
-		if(str[i] == '\n') {
+		if(str[i] == '\n')
 			j--;
-		}
 	}
 	return j;
 }
