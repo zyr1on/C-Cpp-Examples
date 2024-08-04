@@ -1,10 +1,22 @@
 #include <iostream>
 #include <cmath>
-
+#include <random>
 namespace Math
 {
-    struct complex 
-    {
+    long double randomReal(long double min=0,long double max=1) {
+        static std::random_device rseed;
+        static std::mt19937 rng(rseed());
+        std::uniform_real_distribution<double> dist(min,max);
+        return dist(rng);
+    }
+    long int randomInt(long int min=0,long int max=1) {
+        static std::random_device rseed;
+        static std::mt19937 rng(rseed());
+        std::uniform_int_distribution<int> dist(min,max);
+        return dist(rng);
+    }
+	struct complex 
+	{
         long double real;
         long double im;
         complex(): im(0),real(0) {}
@@ -25,15 +37,16 @@ namespace Math
                 throw std::runtime_error("Division by zero");
             return {(this->real*other.real + this->im*other.im) / (other.real*other.real + other.im *other.im), (this->im*other.real - this->real*other.im) / (other.real*other.real + other.im *other.im)};
         }
+        bool operator==(const complex& other) {
+            if(this->real == other.real && this->im == other.im)return true;
+            return false;
+        }
+        void operator=(const complex& other) {
+            this->real = other.real;
+            this->im = other.im;
+        }
         complex conj() {
             return {this->real, -1*this->im};
-        }
-        
-        friend std::ostream& operator<<(std::ostream& os, complex& other) {
-            if(other.im < 0 && other.real < 0 || other.im < 0 && other.real>= 0)
-                os << other.real<<other.im<<"i";
-            else os << other.real <<"+"<<other.im<<"i";    
-            return os;
         }
         long double magnitude() 
         {
@@ -41,6 +54,11 @@ namespace Math
         }
         long double arg() {
             return atan2(this->im,this->real);
+        }
+        friend std::ostream& operator<<(std::ostream& os, Math::complex& other) {
+            if(other.im < 0 && other.real < 0 || other.im < 0 && other.real>= 0) os << other.real<<other.im<<"i";
+            else os << other.real <<"+"<<other.im<<"i";    
+            return os;
         }
         // make polar form complex struct
     };
