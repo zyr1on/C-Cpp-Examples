@@ -10,8 +10,3 @@
 
 #define max(a,b) (a>b ? a : b)
 #define min(a,b) (a>b ? b : a)
-
-#define array_size(arr) (*(&arr + 1)) - (arr)
-#define PRINTARRAY(arr) for(int i=0;i<array_size(arr);i++) printf("%d ",arr[i]);
-
-#define string char*
