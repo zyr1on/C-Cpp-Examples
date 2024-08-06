@@ -19,8 +19,8 @@ int main() {
 
 #define INITIAL_CAP 5                         -> default initial capacity of vector.
 int compare(const void* a, const void* b)     -> the comparison function that qsort uses.
-v_initialized                                 -> checks whether the vector is initialized or not.
-vector v;                                     -> creates vector object
+v_initialized                                 -> global variable that checks whether the vector is initialized or not.
+
 
 void vector_init(vector*v)                    -> *initializes vector.
 int vector_push_back(vector*v, int element)   -> pushs an element to end of the vector. (0 succes -1 fail)
@@ -43,12 +43,12 @@ int vector_destroy(vector*v)                  -> *terminates vector and frees me
 ```c
 #include "vector.h"
 int main() {
-    vector v;
-    vector_init(&v);
+    vector v;             //create vector object
+    vector_init(&v);      // initialize vector object
     ...
     ...
     ...
-    vector_destroy(&v);
+    vector_destroy(&v);   // terminate vector object
 }
 ```
 
