@@ -28,7 +28,49 @@ int vector_get_last_element(vector* v)        -> returns vector's last element.
 int vector_max(vector* v)                     -> returns the maximum value in the vector
 int vector_min(vector* v)                     -> returns the minimum value in the vector
 int vector_size(vector *v)                    -> returns size of vector.
-int vector_print(vector*v)                    -> prints vector like python lists.
+void vector_print(vector*v)                    -> prints vector like python lists.
 void vector_shuffle(vector* v)                -> shuffle vector's elements.
-int vector_destroy(vector*v)                  -> terminates vector and frees memory block.
+int vector_destroy(vector*v)                  -> terminates vector and frees memory block. (0 succes -1 fail)
+```
+4. Basic instructions to start and use vector.
+```c
+#include "vector.h"
+int main() {
+    vector v;
+    vector_init(&v);
+    ...
+    ...
+    ...
+    vector_destroy(&v);
+}
+```
+
+5.Example usage:
+```c
+#include "vector.h"
+
+int main() {
+    vector v;
+    vector_init(&v);
+    
+    vector_push_back(&v,5);
+    vector_push_back(&v,12);
+    vector_push_back(&v,13);
+    vector_print(&v);
+    
+    vector_push_front(&v,-9);
+    vector_push_front(&v,12586);
+    vector_print(&v);
+    
+    vector_shuffle(&v);
+    vector_print(&v);
+    
+    vector_sort(&v);
+    vector_print(&v);
+
+    vector_delete(&v,12586);
+    vector_print(&v);
+
+    vector_destroy(&v);
+}
 ```
