@@ -35,7 +35,7 @@ int vector_get_last_element(vector* v)        -> returns vector's last element.
 int vector_max(vector* v)                     -> returns the maximum value in the vector
 int vector_min(vector* v)                     -> returns the minimum value in the vector
 int vector_size(vector *v)                    -> returns size of vector.
-void vector_print(vector*v)                    -> prints vector like python lists.
+void vector_print(vector*v)                   -> prints vector like python lists.
 void vector_shuffle(vector* v)                -> shuffle vector's elements.
 int vector_destroy(vector*v)                  -> *terminates vector and frees memory block. (0 succes -1 fail)
 ```
