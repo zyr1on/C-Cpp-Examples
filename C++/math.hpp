@@ -10,6 +10,7 @@ namespace Math
         std::uniform_real_distribution<long double> dist(min,max);
         return dist(rng);
     }
+    
     long int randomInt(long int min=0,long int max=1) {
         static std::random_device rseed;
         static std::mt19937 rng(rseed());
@@ -17,11 +18,12 @@ namespace Math
         return dist(rng);
     }
 
+    template <typename T>
     struct Vector2{
-        long double x;
-        long double y;
+        T x;
+        T y;
         Vector2() : x(0),y(0) {}
-        Vector2(long double x,long double y) : x(x),y(y) {}
+        Vector2(T x,T y) : x(x),y(y) {}
         Vector2 operator+(const Vector2& other) {
             return { this->x + other.x , this->y + other.y };
         }
@@ -36,22 +38,26 @@ namespace Math
             if(this->x == other.x && this->y == other.y)return true;
             return false;
         }
-        friend std::ostream& operator<<(std::ostream& os, Math::Vector2& other) {
+        friend std::ostream& operator<<(std::ostream& os, Math::Vector2<T>& other) {
             os << "("<<other.x<<","<<other.y<<")";  
             return os;
         }
-        long double magnitude() 
+        T magnitude() 
         {
             return sqrt(this->x*this->x + this->y*this->y);
         }
+        T norm() {
+            return this->x*this->x + this->y*this->y;
+        }
     };
     
+    template <typename T>
     struct complex 
     {
-        long double real;
-        long double im;
+        T real;
+        T im;
         complex(): im(0),real(0) {}
-        complex(long double real, long double im): im(im),real(real) {}
+        complex(T real, T im): im(im),real(real) {}
 
         complex operator+(const complex& other) {
             return {this->real + other.real , this->im + other.im};
@@ -73,21 +79,28 @@ namespace Math
             if(this->real == other.real && this->im == other.im)return true;
             return false;
         }
+        bool operator!=(const complex& other) {
+            if(this->real == other.real && this->im == other.im)return false;
+            return true;
+        }
         void operator=(const complex& other) {
             this->real = other.real;
             this->im = other.im;
         }
+        T norm() {
+            return this->real*this->real + this->im*this->im;
+        }
         complex conj() {
             return {this->real, -1*this->im};
         }
-        long double magnitude() 
+        T magnitude() 
         {
             return sqrt(this->real*this->real + this->im*this->im);
         }
-        long double arg() {
+        T arg() {
             return atan2(this->im,this->real);
         }
-        friend std::ostream& operator<<(std::ostream& os, Math::complex& other) {
+        friend std::ostream& operator<<(std::ostream& os, Math::complex<T>& other) {
             if(other.im < 0 && other.real < 0 || other.im < 0 && other.real>= 0)
                 os << other.real<<other.im<<"i";
             else os << other.real <<"+"<<other.im<<"i";    
