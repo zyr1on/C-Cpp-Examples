@@ -30,7 +30,7 @@ int vector_sort(vector* v)                    -> sorts vector.(0 succes -1 fail)
 int vector_pop(vector* v)                     -> pops vector element (assume last element deleted)
 int vector_multiply(vector* v)                -> returns the result of multiplying all vector elements
 int vector_sum(vector* v)                     -> returns the result of summing all vector elements
-float vector_avg(vector* v)                   -> returns total avarege of vector elements
+float vector_avg(vector* v)                   -> returns total average of vector elements
 int vector_get_last_element(vector* v)        -> returns vector's last element.
 int vector_max(vector* v)                     -> returns the maximum value in the vector
 int vector_min(vector* v)                     -> returns the minimum value in the vector
@@ -77,6 +77,9 @@ int main() {
 
     vector_delete(&v,12586);
     vector_print(&v);
+
+    printf("Maximum value in vector is: %d\n",vector_max(&v));
+    printf("Average of vector elements is: %f\n",vector_avg(&v));
 
     vector_destroy(&v);
 }
