@@ -7,6 +7,7 @@ int compare(const void* a, const void* b) {
    return (*(int*)a - *(int*)b);
 } // for qsort!
 
+
 typedef struct {
     int* data;
     size_t size;
@@ -59,6 +60,7 @@ int vector_push_back(vector*v, int element) { //vector_push_back(&v,element);
     }
     return 0;
 }
+
 int vector_push_front(vector* v,int element) {
     if (v->data == NULL || v_initialized == 0) {
         fprintf(stderr, "vector_push_front: Vector is NULL or not initialized\n");
@@ -85,6 +87,7 @@ int vector_push_front(vector* v,int element) {
     }
     
 }
+
 int vector_delete(vector* v,int element) { //vector_delete(&v,element);
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_delete: Vector is empty or NULL | maybe not initialized\n");
@@ -111,6 +114,7 @@ int vector_delete(vector* v,int element) { //vector_delete(&v,element);
         return -1;
     }
 }
+
 int vector_sort(vector* v) { //selection sort;
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_sort: Vector is empty or NULL | maybe not initialized\n");
@@ -118,7 +122,9 @@ int vector_sort(vector* v) { //selection sort;
     }
     qsort(v->data,v->size,sizeof(int),compare);
     return 0;
+    
 }
+
 int vector_pop(vector* v) {
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_pop: Vector is empty or NULL | maybe not initialized\n");
@@ -134,12 +140,13 @@ int vector_multiply(vector* v) {
      if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_multiply: Vector is empty or NULL | maybe not initialized\n");
         return -1;
-     }
+    }
     int result = 1;
     for(int i=0;i<v->size;i++)
         result *= v->data[i];
     return result;
 }
+
 int vector_sum(vector* v) {
      if (v->data == NULL || v->size == 0 || v_initialized == 0 ) {
         fprintf(stderr, "vector_sum: Vector is empty or NULL | maybe not initialized\n");
@@ -181,12 +188,14 @@ int vector_max(vector* v) {
         fprintf(stderr, "vector_max: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
+
     int max = v->data[0];
     for(int i=1;i<v->size;i++)
         if(v->data[i] > max) 
             max = v->data[i];
     return max;
 }
+
 int vector_min(vector* v) {
     if (v->data == NULL || v->size == 0 || v_initialized == 0 ) {
         fprintf(stderr, "vector_min: Vector is empty or NULL | maybe not initialized\n");
@@ -198,6 +207,7 @@ int vector_min(vector* v) {
             min = v->data[i];
     return min;
 }
+
 int vector_size(vector *v) {
 	if (v->data == NULL || v_initialized == 0 ) {
         fprintf(stderr, "vector_size: Vector is NULL | maybe not initialized\n");
@@ -205,16 +215,16 @@ int vector_size(vector *v) {
     }
     return v->size;
 }
-int vector_print(vector*v) {
+
+void vector_print(vector*v) {
 	if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_print: Vector is empty or NULL | maybe not initialized\n");
-        return -1;
+        return;
     }
     printf("[");
     for(int i=0;i<v->size-1;i++) printf("%d,",v->data[i]);
-    printf("%d]",v->data[v->size-1]);
-    puts("");
-    return 0;
+    printf("%d]\n",v->data[v->size-1]);
+    return;
 }
 
 void vector_shuffle(vector* v) {
