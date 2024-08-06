@@ -5,3 +5,12 @@
 ```c
 #include "vector.h"
 ```
+
+2. Create and initialize vector struct.
+```c
+#include "vector.h"
+int main() {
+    vector v;
+    vector_init(&v);
+}
+```
