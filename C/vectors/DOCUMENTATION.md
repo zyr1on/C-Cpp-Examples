@@ -14,8 +14,14 @@ int main() {
     vector_init(&v);
 }
 ```
-3. Introduction to Vector functions.
+3. Introduction to Vector and Vector functions.
 ```c
+
+#define INITIAL_CAP 5                         -> default initial capacity of vector.
+int compare(const void* a, const void* b)     -> the comparison function that qsort uses.
+v_initialized                                 -> checks whether the vector is initialized or not.
+
+void vector_init(vector*v)                    -> initializes vector.
 int vector_push_back(vector*v, int element)   -> pushs an element to end of the vector. (0 succes -1 fail)
 int vector_push_front(vector* v,int element)  -> pushs an element to begining of the vector.(0 succes -1 fail)
 int vector_delete(vector* v,int element)      -> deletes an element from vector that passed to function.(0 succes -1 fail)
