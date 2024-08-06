@@ -181,7 +181,6 @@ int vector_max(vector* v) {
         fprintf(stderr, "vector_max: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
-
     int max = v->data[0];
     for(int i=1;i<v->size;i++)
         if(v->data[i] > max) 
@@ -217,7 +216,6 @@ int vector_print(vector*v) {
     puts("");
     return 0;
 }
-
 
 void vector_shuffle(vector* v) {
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
