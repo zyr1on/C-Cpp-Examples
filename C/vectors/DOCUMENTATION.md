@@ -78,8 +78,8 @@ int main() {
     vector_delete(&v,12586);
     vector_print(&v);
 
-    printf("Maximum value in vector is: %d\n",vector_max(&v));
-    printf("Average of vector elements is: %f\n",vector_avg(&v));
+    printf(" Maximum value in vector is:    %d\n" , vector_max(&v));
+    printf(" Average of vector elements is: %f\n" , vector_avg(&v));
 
     vector_destroy(&v);
 }
