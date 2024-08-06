@@ -20,8 +20,9 @@ int main() {
 #define INITIAL_CAP 5                         -> default initial capacity of vector.
 int compare(const void* a, const void* b)     -> the comparison function that qsort uses.
 v_initialized                                 -> checks whether the vector is initialized or not.
+vector v;                                     -> creates vector object
 
-void vector_init(vector*v)                    -> initializes vector.
+void vector_init(vector*v)                    -> *initializes vector.
 int vector_push_back(vector*v, int element)   -> pushs an element to end of the vector. (0 succes -1 fail)
 int vector_push_front(vector* v,int element)  -> pushs an element to begining of the vector.(0 succes -1 fail)
 int vector_delete(vector* v,int element)      -> deletes an element from vector that passed to function.(0 succes -1 fail)
@@ -36,7 +37,7 @@ int vector_min(vector* v)                     -> returns the minimum value in th
 int vector_size(vector *v)                    -> returns size of vector.
 void vector_print(vector*v)                    -> prints vector like python lists.
 void vector_shuffle(vector* v)                -> shuffle vector's elements.
-int vector_destroy(vector*v)                  -> terminates vector and frees memory block. (0 succes -1 fail)
+int vector_destroy(vector*v)                  -> *terminates vector and frees memory block. (0 succes -1 fail)
 ```
 4. Basic instructions to start and use vector.
 ```c
