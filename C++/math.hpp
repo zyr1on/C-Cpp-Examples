@@ -38,6 +38,10 @@ namespace Math
             if(this->x == other.x && this->y == other.y)return true;
             return false;
         }
+        bool operator!=(const Vector2& other) {
+            if(this->x == other.x && this->y == other.y)return false;
+            return true;
+        }
         friend std::ostream& operator<<(std::ostream& os, Math::Vector2<T>& other) {
             os << "("<<other.x<<","<<other.y<<")";  
             return os;
@@ -72,25 +76,29 @@ namespace Math
             long double denominator = other.real * other.real + other.im * other.im;
             if (denominator == 0)
                 throw std::runtime_error("Division by zero");
-    
             return {(this->real*other.real + this->im*other.im) / (other.real*other.real + other.im *other.im), (this->im*other.real - this->real*other.im) / (other.real*other.real + other.im *other.im)};
         }
-        bool operator==(const complex& other) {
+        bool operator==(const complex& other) 
+        {
             if(this->real == other.real && this->im == other.im)return true;
             return false;
         }
-        bool operator!=(const complex& other) {
+        bool operator!=(const complex& other) 
+        {
             if(this->real == other.real && this->im == other.im)return false;
             return true;
         }
-        void operator=(const complex& other) {
+        void operator=(const complex& other) 
+        {
             this->real = other.real;
             this->im = other.im;
         }
-        T norm() {
+        T norm() 
+        {
             return this->real*this->real + this->im*this->im;
         }
-        complex conj() {
+        complex conj() 
+        {
             return {this->real, -1*this->im};
         }
         T magnitude() 
