@@ -48,7 +48,7 @@ int vector_push_back(vector*v, int element) { //vector_push_back(&v,element);
         v->capacity *=2;
         int* temp = (int*)malloc(sizeof(int) * v->capacity);
         if(temp == NULL) {
-            perror("vector_push_back: Memory reallocation error");
+            perror("vector_push_back: Memory allocation error");
             return -1;
         }
         for(int i=0;i<v->size;i++) {
@@ -76,7 +76,7 @@ int vector_push_front(vector* v,int element) {
         v->capacity *=2;
         int* temp = (int*)malloc(sizeof(int) * v->capacity);
         if(temp == NULL) {
-            perror("vector_push_back: Memory reallocation error");
+            perror("vector_push_back: Memory allocation error");
             return -1;
         }
         for(int i=0;i<v->size;i++)
@@ -99,7 +99,7 @@ int vector_delete(vector* v,int element) { //vector_delete(&v,element);
             index = i;
     if(index != -1) {
         int* tempData = (int*)malloc(sizeof(int)*v->capacity);
-        if(tempData == NULL) fprintf(stderr,"vector_delete: Memory reallocation error");
+        if(tempData == NULL) fprintf(stderr,"vector_delete: Memory allocation error");
         for(int i=0;i<index;i++)
             tempData[i] = v->data[i];
         for(int i=index;i<v->size;i++)
