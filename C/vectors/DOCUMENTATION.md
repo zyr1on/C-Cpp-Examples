@@ -39,6 +39,7 @@ int vector_min(vector* v)                     -> returns the minimum value in th
 int vector_size(vector *v)                    -> returns size of vector.
 void vector_print(vector*v)                   -> prints vector like python lists.
 void vector_shuffle(vector* v)                -> shuffle vector's elements.
+void vector_fill(vector* v,int fill_val)      -> fills all vectors elements to fill_val parameter.
 int vector_destroy(vector*v)                  -> *terminates vector and frees memory block. (0 succes -1 fail)
 ```
 4. Basic instructions to start and use vector.
