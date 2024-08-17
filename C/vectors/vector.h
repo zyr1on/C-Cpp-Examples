@@ -251,3 +251,17 @@ int vector_destroy(vector*v){
     v->size = 0;
     return 0;
 }
+
+void vector_fill(vector* v, int fill_val) 
+{
+    if (v->data == NULL || v->size == 0 || v_initialized == 0) {
+        fprintf(stderr, "vector_fill: Vector is empty or NULL | maybe not initialized\n");
+        return;
+    }
+    
+    for(int i=0;i<v->size;i++) 
+    {
+        v->data[i] = fill_val;
+    }
+}
+
