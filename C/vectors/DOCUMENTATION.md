@@ -1,6 +1,6 @@
 <h1> How to use vector.h</h1>
 
-Vector container like C++ for C.
+<h2>Vector container like C++ for C.</h2>
 
 1. First we need to include our header file.
 
