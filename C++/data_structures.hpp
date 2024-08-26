@@ -2,12 +2,12 @@
 #define INITIAL_CAPACITY 5
 
 template <typename T>
-class Stack {
-	private:
+class Stack_A { // stack with arrays, fast but more memory usage;
+private:
 		int top;
 		T* stack;
 		int capacity;
-	public:
+public:
 		Stack() : stack(nullptr) , top(0), capacity(INITIAL_CAPACITY) {}
 		Stack(int cap) : stack(nullptr),top(0),capacity(cap) {}
 		bool empty() {
@@ -38,21 +38,111 @@ class Stack {
 		T peek(){
 			return stack[top];
 		}
-		
 		int size() {
 			return top;
 		}
-		void display() {
-			if(empty()) {
-				std::cout << "stack is empty!\n";
-				return ;
-			}
-			for(int i=0;i<size();i++) std::cout << stack[i]<<" -> ";
-			std::cout << std::endl;
-		}
+
+//		void print() { 
+// 			if(empty()) {
+// 				std::cout << "stack is empty!\n";
+// 				return ;
+// 			}
+// 			for(int i=0;i<size();i++) std::cout << stack[i]<<" -> ";
+// 			std::cout << std::endl;
+// 		}
 		~Stack() {
 			if(stack != nullptr) delete[] stack;
 		}
+};
+
+
+template <typename T>
+class Stack_L { // stack with nodes, slower but less memory usage;
+private:
+	struct Node
+	{
+		Node* next;
+		T data;
+		Node(T data) : data(data),next(nullptr) {}
+		Node() : next(nullptr) {}
+	};
+	Node* head;
+public:
+	Stack_l() : head(nullptr) {};
+	void push(T data) {
+    	Node* newNode = new Node(data);
+    	if (!head)
+    	    head = newNode;
+    	else {
+    	    Node* current = head;
+    	    while (current->next)
+    	        current = current->next;
+    	    current->next = newNode; 
+    	}
+	}
+	T pop() {
+    	if (!head)
+    	    throw std::out_of_range("Stack_l<T>::pop() Stack is empty");
+    	if (!head->next) {
+    	    delete head;
+    	    head = nullptr;
+    	}
+    	Node* current = head;
+    	while (current->next && current->next->next)
+    	    current = current->next;
+		T temp = current->next->data;
+    	delete current->next;  
+    	current->next = nullptr;
+		return temp;
+	}
+
+//	void print() {
+//		if (!head)
+//    	    throw std::out_of_range("Stack_l<T>::print() Stack is empty");
+//		else {
+//			Node* current = head;
+//			while(current) {
+//				std::cout << current->data <<"\n";
+//				current = current->next;
+//			}
+//		}
+//		return;
+//	}
+
+	bool empty() {
+		if(head == nullptr)
+			return true;
+		return false;
+	}
+	T peek() {
+		if (!head)
+    	    throw std::out_of_range("Stack_l<T>::peek() Stack is empty");
+		else {
+			Node* current = head;
+			while(current->next)
+				current = current->next;
+			return current->data;
+		}
+	}
+	int size() {
+		int counter = 0;
+		Node* current = head;
+		while(current) {
+			current = current->next;
+			counter++;
+		}
+		return counter;
+	}
+	
+	~Stack_l() {
+		if(!head) {
+			while(head) {
+				Node* temp = head;
+				head = head->next;
+				delete temp;
+			}	
+		}
+	}
 };
 
 template <typename T>
