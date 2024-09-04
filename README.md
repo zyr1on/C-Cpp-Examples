@@ -7,7 +7,6 @@ Used scanf and cin: these are actually unsafe, but that's beside the point. Ther
 
 
 # LEARN TO:
-<br>
 recursive classes<br>
 variadic templates<br>
 smart pointers<br>
