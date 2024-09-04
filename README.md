@@ -13,3 +13,5 @@ smart pointers<br>
 emplace_back vs push_back<br>
 semantics like move and copy<br>
 std::move and std::forward<br>
+static_cast
+bitset and array lib
