@@ -7,10 +7,10 @@ Used scanf and cin: these are actually unsafe, but that's beside the point. Ther
 
 
 # LEARN TO:
-
-recursive classes
-variadic templates
-smart pointers
-emplace_back vs push_back
-semantics like move and copy
-std::move and std::forward
+<br>
+recursive classes<br>
+variadic templates<br>
+smart pointers<br>
+emplace_back vs push_back<br>
+semantics like move and copy<br>
+std::move and std::forward<br>
