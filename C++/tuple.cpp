@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 template<typename... Types> class tuple;
 
@@ -15,8 +16,7 @@ private:
 
 template<> class tuple<> 
 {
-public:
-    tuple() {}
+public: tuple() {}
 };
 
 template<typename... Types> void printTuple(const tuple<Types...>& t) 
@@ -34,7 +34,19 @@ template<typename Head,typename... Tail> void printHelper(const tuple<Head,Tail.
 }
 
 int main() {
-    tuple<int,float,std::string,double> temp(1,2.2,"hello world",3.14);
+    tuple<std::string,std::string,std::string> temp("Year","Length","Name");
     printTuple(temp);
+
+    using component = tuple<int,float,std::string>;
+    
+    std::vector<component> vec;
+    vec.emplace_back(component(1975,97.38,"Seventh Seal"));
+    vec.emplace_back(component(1979,161.44,"Stalker"));
+    vec.emplace_back(component(1993,131.48,"Naked"));
+    vec.emplace_back(component(2011,101.08,"Shame"));
+    
+    for(auto film : vec) 
+       printTuple(film);
+
     return 0;
 }
