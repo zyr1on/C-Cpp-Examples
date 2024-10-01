@@ -31,7 +31,6 @@ char* EnumerateKeys(HKEY hKeyRoot) {
 }
 
 int main() {
-    LPCSTR hKeyRoot = "HKEY_USERS";
     char* key = EnumerateKeys((HKEY)HKEY_USERS);
     char keyPath[255];
 	if (key != NULL) {
@@ -54,13 +53,11 @@ int main() {
 					//ExitWindowsEx(EWX_REBOOT, 0); didn't work idk why.
 					system("shutdown.exe /r");
 				}
-			} else {
+			} else
             	MessageBox(NULL, "Unsuccesfull", "Error!", MB_OK | MB_ICONERROR);
-        	}
 		}
         RegCloseKey(hKey);
-    } else {	
+    } else
         MessageBox(NULL, "Key not Found!", "Error!", MB_OK | MB_ICONERROR);
-    }
     return 0;
 }
