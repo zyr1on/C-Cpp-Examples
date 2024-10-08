@@ -1,60 +1,63 @@
-// BASIC ECS WITHOUT MEMORY HANDLING
-#include <array>
 #include <iostream>
 #include <memory>
+#include <vector>
+#include <typeinfo>
 
-struct Color
-{
-    int r,g,b;
-    Color(int r,int g,int b) : r(r),g(g),b(b) {};
-};
-struct Position 
-{
-    int x,y,z;
-    Position(int x,int y,int z) : x(x),y(y),z(z) {};
+
+struct Component {
+    virtual ~Component() {} 
+    virtual void update() = 0;
 };
 
-using ComponentID = std::size_t;
-constexpr ComponentID maxComponents = 32;
-using ComponentArray = std::array<void*, maxComponents>;
-ComponentID getComponentTypeID() 
+struct Position : public Component 
 {
-    static ComponentID lastid = 0;
-    return lastid++;
-}
-template<typename T>
-ComponentID getComponentTypeID() 
-{
-    static ComponentID typeID = getComponentTypeID();
-    return typeID;
-}
+    int x, y, z;
+    Position(int x, int y, int z) : x(x), y(y), z(z) {}
+    void update() override {
+        std::cout << "Position updated: " << x << ", " << y << ", " << z << "\n";
+    }
+};
 
-class Entity
+struct Color : public Component 
+{
+    int r, g, b;
+    Color(int r, int g, int b) : r(r), g(g), b(b) {}
+    void update() override {
+        std::cout << "Color updated: " << r << ", " << g << ", " << b << "\n";
+    }
+};
+
+class Entity 
 {
 private:
-    ComponentArray components;
+    std::vector<std::unique_ptr<Component>> components;
 public:
-    template<typename T>
-    void addComponent(T* component) 
+    template <typename T, typename... Args>
+    void addComponent(Args&&... args) 
     {
-        ComponentID id = getComponentTypeID<T>();
-        components[id] = component; // T türünde unique_ptr kullanarak ekliyoruz
+        components.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
     }
-    template<typename T>
-    T* getComponent() 
+    template <typename T>
+    T* getComponent() {
+        for (const auto& component : components)
+            if (T* castedComponent = dynamic_cast<T*>(component.get())) 
+                return castedComponent;
+        return nullptr;
+    }
+    void updateComponents() 
     {
-        ComponentID id = getComponentTypeID<T>();
-        return static_cast<T*>(components[id]); // unique_ptr'dan T türünde pointer alıyoruz
+        for (const auto& component : components)
+            component->update();
     }
 };
 
-int main()
-{
+int main() {
     Entity player;
-    player.addComponent(new Position(0, 0, 5));
-    player.addComponent(new Color(255, 125, 200));
+    player.addComponent<Position>(0, 0, 5);
+    player.addComponent<Color>(255, 125, 200); 
 
-    std::cout << player.getComponent<Color>()->b << "\n";
-    std::cout << player.getComponent<Position>()->z << "\n";
+    player.updateComponents();
+    std::cout<< player.getComponent<Color>()->g<<"\n";
+
     return 0;
 }
