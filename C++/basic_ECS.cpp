@@ -3,7 +3,6 @@
 #include <vector>
 #include <typeinfo>
 
-
 struct Component {
     virtual ~Component() {} 
     virtual void update() = 0;
