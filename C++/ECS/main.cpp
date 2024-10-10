@@ -1,12 +1,14 @@
 #include <iostream>
 #include "ECS.h"
 
+Entitiy player;
+
 int main(int argc, char const *argv[])
 {
-    Entitiy player;
-    player.addComponent<Position>(0,2,25);
-    std::cout<<player.getComponent<Position>()->y<<"\n";
-
+    player.addComponent<Position>(25,33,245);
+    Position* pos = player.getComponent<Position>();
+    pos->update();
+    delete pos;
     return 0;
 }
 
