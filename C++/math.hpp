@@ -18,12 +18,11 @@ namespace Math
         return dist(rng);
     }
 
-    template <typename T>
     struct Vector2{
-        T x;
-        T y;
+        double x;
+        double y;
         Vector2() : x(0),y(0) {}
-        Vector2(T x,T y) : x(x),y(y) {}
+        Vector2(double x,double y) : x(x),y(y) {}
         Vector2 operator+(const Vector2& other) {
             return { this->x + other.x , this->y + other.y };
         }
@@ -42,79 +41,62 @@ namespace Math
             if(this->x == other.x && this->y == other.y)return false;
             return true;
         }
-        friend std::ostream& operator<<(std::ostream& os, Math::Vector2<T>& other) {
+        friend std::ostream& operator<<(std::ostream& os, const Vector2& other) {
             os << "("<<other.x<<","<<other.y<<")";  
             return os;
         }
-        T magnitude() 
+        double magnitude() 
         {
             return sqrt(this->x*this->x + this->y*this->y);
         }
-        T norm() {
+        double norm() {
             return this->x*this->x + this->y*this->y;
         }
     };
-    
-    template <typename T>
-    struct complex 
-    {
-        T real;
-        T im;
-        complex(): im(0),real(0) {}
-        complex(T real, T im): im(im),real(real) {}
-
-        complex operator+(const complex& other) {
-            return {this->real + other.real , this->im + other.im};
-        }
-        complex operator-(const complex& other) {
-            return {this->real - other.real , this->im - other.im};
-        }
-        complex operator*(const complex& other) {
-            return {this->real*other.real - this->im*other.im, this->real*other.im + this->im*other.real};
-        }
-        complex operator/(const complex& other) { //check
-            long double denominator = other.real * other.real + other.im * other.im;
-            if (denominator == 0)
-                throw std::runtime_error("Division by zero");
-            return {(this->real*other.real + this->im*other.im) / (other.real*other.real + other.im *other.im), (this->im*other.real - this->real*other.im) / (other.real*other.real + other.im *other.im)};
-        }
-        bool operator==(const complex& other) 
+    struct Vector3{
+        double x;
+        double y;
+        double z;
+        Vector3() : x(0),y(0),z(0) {}
+        Vector3(double x,double y,double z) : x(x),y(y),z(0) {}
+        Vector3 operator+(const Vector3& other) 
         {
-            if(this->real == other.real && this->im == other.im)return true;
+            return { this->x + other.x , this->y + other.y,this->z + other.z };
+        }
+        Vector3 operator-(const Vector3& other) 
+        {
+            return { this->x - other.x , this->y - other.y,this->z - other.y };
+        }
+        void operator=(const Vector3& other) 
+        {
+            this->x = other.x;
+            this->y = other.y;
+            this->z = other.z;
+        }
+        
+        bool operator==(const Vector3& other) 
+        {
+            if(this->x == other.x && this->y == other.y && this->z == other.z)return true;
             return false;
         }
-        bool operator!=(const complex& other) 
+        bool operator!=(const Vector3& other) 
         {
-            if(this->real == other.real && this->im == other.im)return false;
+            if(this->x == other.x && this->y == other.y && this->z == other.z)return false;
             return true;
         }
-        void operator=(const complex& other) 
+        friend std::ostream& operator<<(std::ostream& os, const Vector3& other) 
         {
-            this->real = other.real;
-            this->im = other.im;
-        }
-        T norm() 
-        {
-            return this->real*this->real + this->im*this->im;
-        }
-        complex conj() 
-        {
-            return {this->real, -1*this->im};
-        }
-        T magnitude() 
-        {
-            return sqrt(this->real*this->real + this->im*this->im);
-        }
-        T arg() {
-            return atan2(this->im,this->real);
-        }
-        friend std::ostream& operator<<(std::ostream& os, Math::complex<T>& other) {
-            if(other.im < 0 && other.real < 0 || other.im < 0 && other.real>= 0)
-                os << other.real<<other.im<<"i";
-            else os << other.real <<"+"<<other.im<<"i";    
+            os << "("<<other.x<<","<<other.y<<","<<other.z<<")";  
             return os;
         }
-        // make polar form complex struct
+        double magnitude() 
+        {
+            return sqrt(this->x*this->x + this->y*this->y + this->z*this->z);
+        }
+        double norm() 
+        {
+            return this->x*this->x + this->y*this->y + this->z *this->z;
+        }
     };
 } // namespace Math
 
