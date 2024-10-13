@@ -1,3 +1,5 @@
+#include "math.hpp"
+
 struct Component
 {
     virtual ~Component() {}
@@ -5,7 +7,7 @@ struct Component
 };
 
 struct Color : Component
-{
+{    
     int r,g,b,a;
     Color(int r,int g,int b,int a) : r(r),g(g),b(b),a(a) {}
     void update() override
@@ -15,7 +17,7 @@ struct Color : Component
 };
 
 struct Position : Component
-{
+{    
     int x,y,z;
     Position(int x,int y,int z) : x(x),y(y),z(z) {}
     void update() override
@@ -33,3 +35,14 @@ struct Rotation : Component
         std::cout<<"Rotation("<<x<<","<<y<<","<<z<<")";
     }
 };
+
+struct Tag : Component
+{    
+    std::string m_tag;
+    Tag(std::string tag_) : m_tag(tag_) {}
+    void update() override 
+    {
+        std::cout<<"Tag="<<m_tag;
+    }
+};
+
