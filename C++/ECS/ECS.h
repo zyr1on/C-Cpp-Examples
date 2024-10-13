@@ -11,7 +11,11 @@ public:
     template<typename T,typename... Args>
     void addComponent(Args&&... args)
     {
-        components.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
+        if constexpr (sizeof...(args) == 0) {
+            throw std::invalid_argument("addComponent(argument) must be called with at least one argument.");
+        } else {
+            components.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
+        }
     }
     template<typename T>
     T* getComponent()
