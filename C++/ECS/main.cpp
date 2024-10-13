@@ -2,13 +2,33 @@
 #include "ECS.h"
 
 Entitiy player;
-
-int main(int argc, char const *argv[])
+Position* playerPos;
+Tag* playerTag;
+void began() 
 {
     player.addComponent<Position>(25,33,245);
-    Position* pos = player.getComponent<Position>();
-    pos->update();
-    delete pos;
+    player.addComponent<Rotation>(0,0,0);
+    player.addComponent<Tag>("Player");    
+    
+}
+void start() 
+{
+    playerPos = player.getComponent<Position>();
+    playerTag = player.getComponent<Tag>();
+}
+void run() 
+{
+    playerPos->update();
+    playerTag->update();
+    
+    delete playerPos;
+    delete playerTag;
+}
+int main(int argc, char const *argv[])
+{
+    began();
+    start();
+    run();    
     return 0;
 }
 
