@@ -1,10 +1,9 @@
 /*
-	AUTHOR: Semih zyr1on Özdemir
- 	dynamic array implementation of C
+	AUTHOR: Semih "zyr1on" Özdemir
+ 	ordered dynamic array implementation of C
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 #define INITIAL_CAP 5
 
@@ -67,7 +66,7 @@ int vector_push_back(vector*v,int element)
 		int* temp = (int*)malloc(sizeof(int) * v->capacity);
 		if(temp == NULL) 
 		{
-        	perror("vector_push_back: Memory allocation error");
+        	perror("vector_push_back: Temporary Memory allocation error");
 			return -1;
         }
 		int checked_index = 0;
