@@ -6,15 +6,14 @@
 #include <stdlib.h>
 
 #define INITIAL_CAP 5
-
 typedef struct {
     int* data;
     size_t size;
     size_t capacity;
-} vector;
+} u_vector;
 
 int v_initialized = 0;
-void vector_init(vector*v) {
+void vector_init(u_vector*v) {
     if(v_initialized == 1) {
         fprintf(stderr, "vector_init: Vector is already initialized\n");
         return;
@@ -32,7 +31,7 @@ void vector_init(vector*v) {
     }  
 }
 
-int vector_push_back(vector*v,int element) 
+int vector_push_back(u_vector*v,int element) 
 {
 	if (v->data == NULL || v_initialized == 0) 
 	{
@@ -111,7 +110,7 @@ int vector_push_back(vector*v,int element)
 	}
 }
 
-int vector_delete(vector* v,int element) { //vector_delete(&v,element);
+int vector_delete(u_vector* v,int element) {
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_delete: Vector is empty or NULL | maybe not initialized\n");
         return -1;
@@ -138,7 +137,7 @@ int vector_delete(vector* v,int element) { //vector_delete(&v,element);
     }
 }
 
-int vector_pop(vector* v) {
+int vector_pop(u_vector* v) {
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_pop: Vector is empty or NULL | maybe not initialized\n");
         return -1;
@@ -149,7 +148,7 @@ int vector_pop(vector* v) {
     }
 }
 
-int vector_multiply(vector* v) {
+int vector_multiply(u_vector* v) {
      if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_multiply: Vector is empty or NULL | maybe not initialized\n");
         return -1;
@@ -160,7 +159,7 @@ int vector_multiply(vector* v) {
     return result;
 }
 
-int vector_sum(vector* v) {
+int vector_sum(u_vector* v) {
      if (v->data == NULL || v->size == 0 || v_initialized == 0 ) {
         fprintf(stderr, "vector_sum: Vector is empty or NULL | maybe not initialized\n");
         return -1;
@@ -171,7 +170,7 @@ int vector_sum(vector* v) {
     return sum;
 }
 
-float vector_avg(vector* v) {
+float vector_avg(u_vector* v) {
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_avg: Vector is empty or NULL | maybe not initialized\n");
         return -1;
@@ -183,7 +182,7 @@ float vector_avg(vector* v) {
     return (float) ((float)sum/(float)v->size);
 }
 
-int vector_get_last_element(vector* v) {
+int vector_get_last_element(u_vector* v) {
     if (v->data == NULL || v->size == 0 || v_initialized == 0 ) {
         fprintf(stderr, "vector_get_last_element: Vector is empty or NULL | maybe not initialized\n");
         return -1;
@@ -196,7 +195,7 @@ int vector_get_last_element(vector* v) {
     }   
 }
 
-int vector_size(vector *v) {
+int vector_size(u_vector *v) {
 	if (v->data == NULL || v_initialized == 0 ) {
         fprintf(stderr, "vector_size: Vector is NULL | maybe not initialized\n");
         return -1;
@@ -204,7 +203,7 @@ int vector_size(vector *v) {
     return v->size;
 }
 
-void vector_print(vector*v) {
+void vector_print(u_vector*v) {
 	if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_print: Vector is empty or NULL | maybe not initialized\n");
         return;
@@ -215,7 +214,7 @@ void vector_print(vector*v) {
     return;
 }
 
-int vector_destroy(vector*v){
+int vector_destroy(u_vector*v){
     if (v->data == NULL || v_initialized == 0) {
         fprintf(stderr, "vector_destroy: Vector is NULL | maybe already destroyed or not initialized\n");
         return -1;
@@ -226,7 +225,7 @@ int vector_destroy(vector*v){
     return 0;
 }
 
-void vector_fill(vector* v, int fill_val) 
+void vector_fill(u_vector* v, int fill_val) 
 {
     if (v->data == NULL || v->size == 0 || v_initialized == 0) 
 	{
