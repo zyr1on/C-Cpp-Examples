@@ -61,7 +61,7 @@ int vector_push_back(vector*v,int element)
 		}
 		return 0;
 	}
-	if(v->size > v->capacity) 
+	if(v->size >= v->capacity) 
 	{
 		v->capacity *= 2;
 		int* temp = (int*)malloc(sizeof(int) * v->capacity);
@@ -84,6 +84,8 @@ int vector_push_back(vector*v,int element)
 					temp[k+1] = v->data[k];
 			}
 			v->size++;
+			free(v->data);
+			v->data = temp;
 			break;
 		}
 	}
