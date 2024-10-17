@@ -91,7 +91,7 @@ int main() {
 <details>
 <summary style="font-size: 18px;">ORDERED_VECTOR.H</summary>
 <h1> How to use ordered_vector.h</h1>
-<h2> Ordered Vector container like C++ for C. "The elements are arranged in a specific order." </h2>
+<h2> Ordered Vector container like C++ for C. "Elements are sorted in an orderly manner." </h2>
 
 1. First we need to include our header file.
 
@@ -143,10 +143,10 @@ int main() {
     u_vector v;
     vector_init(&v);
 
-    vector_push_back(&v,5); // 5 _ _ _ _
-    vector_push_back(&v,1); // 1 5 _ _ _
-    vector_push_back(&v,7); // 1 5 7 _ _
-    vector_push_back(&v,0); // 0 1 5 7 _ 
+    u_vector_push_back(&v,5); // 5 _ _ _ _
+    u_vector_push_back(&v,1); // 1 5 _ _ _
+    u_vector_push_back(&v,7); // 1 5 7 _ _
+    u_vector_push_back(&v,0); // 0 1 5 7 _ 
 
     vector_print(&v);
 
