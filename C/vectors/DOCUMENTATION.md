@@ -113,7 +113,7 @@ int main() {
 v_initialized                                 -> global variable that checks whether the vector is initialized or not.
 
 void vector_init(vector*v)                    -> *initializes vector.
-int vector_push_back(vector*v, int element)   -> pushs an element to end of the vector. (0 succes -1 fail)
+int u_vector_push_back(vector*v, int element)   -> pushs an element to end of the vector. (0 succes -1 fail)
 int vector_delete(vector* v,int element)      -> deletes an element from vector that passed to function.(0 succes -1 fail)
 int vector_pop(vector* v)                     -> pops vector element (assume last element deleted)
 int vector_get_last_element(vector* v)        -> returns vector's last element.
