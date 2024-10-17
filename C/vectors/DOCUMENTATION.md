@@ -1,13 +1,11 @@
 <h1> How to use vector.h</h1>
-
 <h2>Vector container like C++ for C.</h2>
 
 1. First we need to include our header file.
 
 ```c
-#include "vector.h"
+#include "vector.h"         // for unordered_vector;
 ```
-
 2. Create and initialize vector struct.
 ```c
 #include "vector.h"
@@ -87,3 +85,5 @@ int main() {
     vector_destroy(&v);
 }
 ```
+
+
