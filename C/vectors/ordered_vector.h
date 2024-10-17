@@ -6,7 +6,6 @@
 #include <stdlib.h>
 
 #define INITIAL_CAP 5
-
 typedef struct {
     int* data;
     size_t size;
@@ -111,7 +110,7 @@ int u_vector_push_back(u_vector*v,int element)
 	}
 }
 
-int vector_delete(u_vector* v,int element) { //vector_delete(&v,element);
+int vector_delete(u_vector*v,int element) { //vector_delete(&v,element);
     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
         fprintf(stderr, "vector_delete: Vector is empty or NULL | maybe not initialized\n");
         return -1;
