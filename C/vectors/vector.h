@@ -1,3 +1,7 @@
+/*
+	AUTHOR: Semih "zyr1on" Özdemir
+ 	unordered dynamic array implementation of C
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
