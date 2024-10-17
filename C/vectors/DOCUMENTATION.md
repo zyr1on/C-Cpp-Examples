@@ -102,7 +102,7 @@ int main() {
 ```c
 #include "ordered_vector.h"
 int main() {
-    vector v;
+    u_vector v;
     vector_init(&v);
 }
 ```
@@ -126,7 +126,7 @@ int vector_destroy(vector*v)                  -> *terminates vector and frees me
 ```c
 #include "ordered_vector.h"
 int main() {
-    vector v;             //create vector object
+    u_vector v;            //create vector object
     vector_init(&v);      // initialize vector object
     ...
     ...
@@ -140,7 +140,7 @@ int main() {
 #include "ordered_vector.h"
 
 int main() {
-    vector v;
+    u_vector v;
     vector_init(&v);
 
     vector_push_back(&v,5); // 5 _ _ _ _
