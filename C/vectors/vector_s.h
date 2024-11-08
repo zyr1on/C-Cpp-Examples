@@ -92,3 +92,4 @@ int vector_destroy_s(vector_s* v)
     v->initialized = 0;
     return 0;
 }
+
