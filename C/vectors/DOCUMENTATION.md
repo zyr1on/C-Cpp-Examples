@@ -82,11 +82,19 @@ int main() {
     vector_delete(&v,12586);
     vector_print(&v);
 
-    printf(" Maximum value in vector is:    %d\n" , vector_max(&v));
-    printf(" Average of vector elements is: %f\n" , vector_avg(&v));
+    printf("Maximum value in vector is:    %d\n" , vector_max(&v));
+    printf("Average of vector elements is: %f\n" , vector_avg(&v));
 
     vector_destroy(&v);
 }
+OUTPUT:
+[5,12,13]
+[12586,-9,5,12,13]
+[13,5,12,-9,12586]
+[-9,5,12,13,12586]
+[-9,5,12,13]
+Maximum value in vector is:    13      
+Average of vector elements is: 5.250000
 ```
 </details>
 <details>
@@ -143,10 +151,16 @@ int main()
     ordered_vector_insert(&o_vec,7);
     ordered_vector_insert(&o_vec,24);
     ordered_vector_print(&o_vec);
+    printf("24 index at: %d\n",ordered_vector_IndexAt(&o_vec,24));
+    ordered_vector_delete(&o_vec,7);
+    ordered_vector_print(&o_vec);
     
     ordered_vector_destroy(&o_vec);
     return 0;
 }
-OUTPUT = [7,24,25]
+OUTPUT:
+[7,24,25]
+24 index at: 1
+[24,25]
 ```
 </details>
