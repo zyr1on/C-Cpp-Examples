@@ -8,37 +8,37 @@ typedef struct {
     char**data;
     size_t size;
     size_t capacity;
-} vector_s;
+} str_vector;
 
-int vector_init_s(vector_s* v) {
-    if (v == NULL ||v->data == NULL) {
-        fprintf(stderr, "vector_init_s: Vector pointer is NULL\n");
+int str_vector_init(str_vector* v) {
+    if (v == NULL) {
+        fprintf(stderr, "str_vector_init: Vector pointer is NULL\n");
         return -1;
     }
     if (v->initialized == 1) {
-        fprintf(stderr, "vector_init_s: Vector is already initialized\n");
+        fprintf(stderr, "str_vector_init: Vector is already initialized\n");
         return -1;
     }
     v->capacity  = INITIAL_CAPACITY;
     v->data = (char**)malloc(sizeof(char*) * v->capacity);
     if(v->data == NULL) 
     {
-        perror("vector_init_s: (malloc) Memory allocation error");
+        perror("str_vector_init: (malloc) Memory allocation error");
         return -1;
     }
     v->size = 0;
     v->initialized = 1;
     return 0;
 }
-int vector_push_back_s(vector_s* v, char* string) {
+int str_vector_push_back(str_vector* v, char* string) {
     if (v == NULL || v->initialized != 1 || v->data == NULL) {
-        fprintf(stderr, "vector_push_back_s: Vector is NULL or not initialized\n");
+        fprintf(stderr, "str_vector_push_back: Vector is NULL or not initialized\n");
         return -1;
     }
     if (v->size >= v->capacity) {
         char** temp = (char**)malloc(sizeof(char*) * v->capacity * 2);
         if (temp == NULL) {
-            perror("vector_push_back_s: (malloc) Memory allocation error");
+            perror("str_vector_push_back: (malloc) Memory allocation error");
             return -1;
         }
         for(int i=0;i<v->size;i++) 
@@ -63,9 +63,9 @@ int vector_push_back_s(vector_s* v, char* string) {
     v->size++;
     return 0;
 }
-void vector_print_s(vector_s* v) {
+void str_vector_print(str_vector* v) {
 	if (v == NULL || v->initialized != 1||v->data == NULL || v->size == 0) {
-        fprintf(stderr, "vector_print_s: Vector is empty or NULL | maybe not initialized\n");
+        fprintf(stderr, "str_vector_print: Vector is empty or NULL | maybe not initialized\n");
         return;
     }
     printf("[");
@@ -76,11 +76,11 @@ void vector_print_s(vector_s* v) {
             printf("\"%s\"]",v->data[i]);
     printf("\n");
 }
-int vector_destroy_s(vector_s* v)
+int str_vector_destroy(str_vector* v)
 {
     if (v == NULL || v->initialized != 1 ||v->data == NULL)
     {
-        fprintf(stderr, "vector_destroy_s: Vector is not initialized\n");
+        fprintf(stderr, "str_vector_destroy: Vector is not initialized\n");
         return -1;
     }
     for(int i=0;i<v->capacity;i++)
@@ -92,4 +92,14 @@ int vector_destroy_s(vector_s* v)
     v->initialized = 0;
     return 0;
 }
-
+int str_vector_IndexAt(str_vector* v, char* element) 
+{
+    for(int i=0;i<v->size;i++) 
+    {
+        if(strcmp(v->data[i],element) == 0) 
+        {
+            return i;
+        }
+    }
+    return -1;
+}
