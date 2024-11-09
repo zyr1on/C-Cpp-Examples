@@ -50,7 +50,6 @@ int vector_push_back(vector*v, int element) {
         memcpy(temp,v->data,sizeof(int)*v->size);
         free(v->data);
         v->data = temp;
-        //v->data[v->size++] = element;
     }
     v->data[v->size++] = element;
     return 0;
@@ -68,20 +67,15 @@ int vector_push_front(vector* v,int element) {
             perror("vector_push_back: Temporary Memory allocation error");
             return -1;
         }
-        // for(int i=0;i<v->size;i++)
-        //     temp[i+1] = v->data[i];
         memmove(temp+1,v->data,sizeof(int)*v->size);
         free(v->data);
         v->data = temp;
-        v->data[0] = element;
     }
     else 
     {
-        // for (int i = v->size; i > 0; i--)
-        //     v->data[i] = v->data[i - 1];
         memmove(v->data + 1,v->data,sizeof(int) * (v->size));
-        v->data[0] = element;
     }
+    v->data[0] = element;
     v->size++;
     return 0;
 }
@@ -93,15 +87,17 @@ int vector_delete(vector* v,int element) { //vector_delete(&v,element);
     }
     int index = -1;
     for(int i=0;i<v->size;i++)
-        if(v->data[i] == element)
+        if(v->data[i] == element) {
             index = i;
+            break;
+        }
     if(index != -1) {
         int* tempData = (int*)malloc(sizeof(int)*v->capacity);
         if(tempData == NULL) fprintf(stderr,"vector_delete: Memory allocation error");
-        for(int i=0;i<index;i++)
-            tempData[i] = v->data[i];
-        for(int i=index;i<v->size;i++)
-            tempData[i] = v->data[i+1];
+        if(index > 0) 
+            memcpy(tempData,v->data,sizeof(int)*index);
+        if(index < v->size -1)
+            memcpy(tempData + index,v->data+index+1,sizeof(int) * (v->size - index - 1));
         free(v->data);
         v->data = tempData;
         v->size--;
@@ -120,7 +116,6 @@ int vector_sort(vector* v) { //selection sort;
     }
     qsort(v->data,v->size,sizeof(int),compare);
     return 0;
-    
 }
 
 int vector_pop(vector* v) {
@@ -258,18 +253,13 @@ void vector_fill(vector* v, int fill_val)
         fprintf(stderr, "vector_fill: Vector is empty or NULL | maybe not initialized\n");
         return;
     }
-    
     for(int i=0;i<v->size;i++) 
-    {
         v->data[i] = fill_val;
-    }
 }
 int vector_IndexAt(vector* v, int element) 
 {
-    for(int i=0;i<v->size;i++) 
-    {
+    for(int i=0;i<v->size;i++)
         if(v->data[i] == element)
             return i;
-    }
     return -1;
 }
