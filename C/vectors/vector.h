@@ -50,7 +50,7 @@ int vector_push_back(vector*v, int element) {
         memcpy(temp,v->data,sizeof(int)*v->size);
         free(v->data);
         v->data = temp;
-        v->data[v->size++] = element;
+        //v->data[v->size++] = element;
     }
     v->data[v->size++] = element;
     return 0;
