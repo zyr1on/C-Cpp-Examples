@@ -44,7 +44,7 @@ int vector_push_back(vector*v, int element) {
         v->capacity *=2;
         int* temp = (int*)malloc(sizeof(int) * v->capacity);
         if(temp == NULL) {
-            perror("vector_push_back: Memory allocation error");
+            perror("vector_push_back: Temporary Memory allocation error");
             return -1;
         }
         memcpy(temp,v->data,sizeof(int)*v->size);
@@ -65,7 +65,7 @@ int vector_push_front(vector* v,int element) {
         v->capacity *=2;
         int* temp = (int*)malloc(sizeof(int) * v->capacity);
         if(temp == NULL) {
-            perror("vector_push_back: Memory allocation error");
+            perror("vector_push_back: Temporary Memory allocation error");
             return -1;
         }
         // for(int i=0;i<v->size;i++)
