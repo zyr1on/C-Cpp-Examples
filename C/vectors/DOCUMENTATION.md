@@ -42,6 +42,7 @@ void vector_print(vector*v)                   -> prints vector like python lists
 void vector_shuffle(vector* v)                -> shuffle vector's elements.
 void vector_fill(vector* v,int fill_val)      -> fills all vectors elements to fill_val parameter.
 int vector_destroy(vector*v)                  -> *terminates vector and frees memory block. (0 succes -1 fail)
+int vector_IndexAt(vector* v, int element)    -> linear search to find the index of a given element. (Index elements index number, -1 not Found)
 ```
 4. Basic instructions to start and use vector.
 ```c
@@ -100,57 +101,52 @@ int main() {
 ```
 2. Create and initialize vector struct.
 ```c
-#include "ordered_vector.h"
-int main() {
-    u_vector v;
-    vector_init(&v);
+#include"ordered_vector.h"
+int main()
+{
+    ordered_vector o_vec;
+    ordered_vector_init(&o_vec);
 }
 ```
 3. Introduction to Vector and Vector functions.
 ```c
-
-#define INITIAL_CAP 5                         -> default initial capacity of vector.
-v_initialized                                 -> global variable that checks whether the vector is initialized or not.
-
-void vector_init(vector*v)                    -> *initializes vector.
-int u_vector_push_back(vector*v, int element)   -> pushs an element to end of the vector. (0 succes -1 fail)
-int vector_delete(vector* v,int element)      -> deletes an element from vector that passed to function.(0 succes -1 fail)
-int vector_pop(vector* v)                     -> pops vector element (assume last element deleted)
-int vector_get_last_element(vector* v)        -> returns vector's last element.
-int vector_size(vector *v)                    -> returns size of vector.
-void vector_print(vector*v)                   -> prints vector like python lists.
-void vector_fill(vector* v,int fill_val)      -> fills all vectors elements to fill_val parameter.
-int vector_destroy(vector*v)                  -> *terminates vector and frees memory block. (0 succes -1 fail)
+#define INITIAL_CAP 5                                         -> default initial capacity of vector.
+void ordered_vector_init(vector*v)                            -> *initializes vector.
+int  ordered_vector_insert(vector*v, int element)              -> inserts an element into an ordered vector while maintaining the order. (0 succes -1 fail)
+int  ordered_vector_delete(vector* v,int element)              -> deletes an element from vector that passed to function.(0 succes -1 fail)
+int  ordered_vector_pop(vector* v)                             -> pops vector element (assume last element deleted)
+int  ordered_vector_last(vector* v)                            -> returns vector's last element.
+int  ordered_vector_size(vector *v)                            -> returns size of vector.
+void ordered_vector_print(vector*v)                           -> prints vector like python lists.
+void ordered_vector_fill(vector* v,int fill_val)              -> fills all vectors elements to fill_val parameter.
+int  ordered_vector_destroy(vector*v)                          -> *terminates vector and frees memory block. (0 succes -1 fail)
 ```
 4. Basic instructions to start and use vector.
 ```c
-#include "ordered_vector.h"
-int main() {
-    u_vector v;            //create vector object
-    vector_init(&v);      // initialize vector object
+#include"ordered_vector.h"
+int main()
+{
+    ordered_vector o_vec;
+    ordered_vector_init(&o_vec);
     ...
-    ...
-    ...
-    vector_destroy(&v);   // terminate vector object
+    ordered_vector_destroy(&o_vec);
 }
 ```
-
 5.Example usage:
 ```c
-#include "ordered_vector.h"
-
-int main() {
-    u_vector v;
-    vector_init(&v);
-
-    u_vector_push_back(&v,5); // 5 _ _ _ _
-    u_vector_push_back(&v,1); // 1 5 _ _ _
-    u_vector_push_back(&v,7); // 1 5 7 _ _
-    u_vector_push_back(&v,0); // 0 1 5 7 _ 
-
-    vector_print(&v);
-
-    vector_destroy(&v);
+#include"ordered_vector.h"
+int main()
+{
+    ordered_vector o_vec;
+    ordered_vector_init(&o_vec);
+    ordered_vector_insert(&o_vec,25);
+    ordered_vector_insert(&o_vec,7);
+    ordered_vector_insert(&o_vec,24);
+    ordered_vector_print(&o_vec);
+    
+    ordered_vector_destroy(&o_vec);
+    return 0;
 }
+OUTPUT = [7,24,25]
 ```
 </details>
