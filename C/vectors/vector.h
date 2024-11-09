@@ -8,18 +8,16 @@
 #include<string.h>
 
 #define INITIAL_CAP 5
-int compare(const void* a, const void* b) {
-   return (*(int*)a - *(int*)b);
-}
 typedef struct {
     int* data;
     size_t size;
     size_t capacity;
     int initialized;
 } vector;
-// vector v;
-// vector_init(&v);
-// vector_destroy(&v);
+
+int compare(const void* a, const void* b) {
+   return (*(int*)a - *(int*)b);
+}
 
 int vector_init(vector*v) {
     if(v->initialized == 1) {
@@ -260,5 +258,14 @@ void vector_fill(vector* v, int fill_val)
     {
         v->data[i] = fill_val;
     }
+}
+int vector_IndexAt(vector* v, int element) 
+{
+    for(int i=0;i<v->size;i++) 
+    {
+        if(v->data[i] == element)
+            return i;
+    }
+    return -1;
 }
 
