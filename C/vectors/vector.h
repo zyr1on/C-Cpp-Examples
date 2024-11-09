@@ -68,15 +68,20 @@ int vector_push_front(vector* v,int element) {
             perror("vector_push_back: Memory allocation error");
             return -1;
         }
-        for(int i=0;i<v->size;i++)
-            temp[i+1] = v->data[i];
+        // for(int i=0;i<v->size;i++)
+        //     temp[i+1] = v->data[i];
+        memmove(temp+1,v->data,sizeof(int)*v->size);
         free(v->data);
         v->data = temp;
         v->data[0] = element;
     }
-    for(int i=v->size;i>0;i--)
-        v->data[i] = v->data[i-1];
-    v->data[0] = element;
+    else 
+    {
+        // for (int i = v->size; i > 0; i--)
+        //     v->data[i] = v->data[i - 1];
+        memmove(v->data + 1,v->data,sizeof(int) * (v->size));
+        v->data[0] = element;
+    }
     v->size++;
     return 0;
 }
@@ -268,4 +273,3 @@ int vector_IndexAt(vector* v, int element)
     }
     return -1;
 }
-
