@@ -73,12 +73,8 @@ int ordered_vector_insert(ordered_vector*v,int element)
 				checked_index++;
 			else 
 			{
-				// for(int k=0;k<checked_index;k++) 
-				//      temp[k] = v->data[k];
                 memcpy(temp,v->data,sizeof(int) * checked_index);
 				temp[checked_index] = element;
-				// for(int k=checked_index;k<v->size;k++) 
-				// 	temp[k+1] = v->data[k];
                 memcpy(temp + checked_index + 1,v->data + checked_index,sizeof(int)* (v->size - checked_index));                
                 break;
             }
@@ -101,7 +97,6 @@ int ordered_vector_insert(ordered_vector*v,int element)
                 v->data[checked_index] = element;
 				v->size++;
 				return 0;
-			
 			}
 		}
 		v->data[checked_index] = element;
