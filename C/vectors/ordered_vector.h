@@ -97,8 +97,6 @@ int ordered_vector_insert(ordered_vector*v,int element)
 				checked_index++;
 			else 
 			{
-				// for(int k=v->size;k>checked_index;k--)
-				//      v->data[k] = v->data[k-1];
 				memmove(v->data + checked_index + 1, v->data + checked_index, sizeof(int) * (v->size - checked_index));
                 v->data[checked_index] = element;
 				v->size++;
@@ -232,8 +230,7 @@ void ordered_vector_fill(ordered_vector* v, int fill_val)
         fprintf(stderr, "ordered_vector_fill: Vector is empty or NULL | maybe not initialized\n");
         return;
     }
-    for(int i=0;i<v->size;i++)
-        v->data[i] = fill_val;
+    memset(v->data,fill_val,sizeof(int)*v->size);
 }
 int ordered_vector_IndexAt(ordered_vector* v, int element) 
 {
