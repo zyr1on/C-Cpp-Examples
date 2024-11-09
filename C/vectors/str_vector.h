@@ -43,7 +43,7 @@ int str_vector_push_back(str_vector* v, char* string) {
         }
         for(int i=0;i<v->size;i++) 
         {
-            temp[i] = (char*)malloc(sizeof(char) * strlen(v->data[i]));
+            temp[i] = (char*)malloc(sizeof(char) * (strlen(v->data[i])+1));
             strncpy(temp[i],v->data[i],strlen(v->data[i]));
             temp[i][strlen(v->data[i])] = '\0';
         }
@@ -53,7 +53,7 @@ int str_vector_push_back(str_vector* v, char* string) {
         v->data = temp;
         v->capacity *= 2;
     }
-    v->data[v->size] = (char*)malloc(sizeof(char) * (strlen(string)));
+    v->data[v->size] = (char*)malloc(sizeof(char) * (strlen(string) + 1));
     if (v->data[v->size] == NULL) {
         perror("vector_push_back_s: (malloc) Memory allocation error");
         return -1;
