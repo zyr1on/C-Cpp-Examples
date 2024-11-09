@@ -10,32 +10,30 @@ typedef struct {
     int* data;
     size_t size;
     size_t capacity;
-} u_vector;
+    int initialized;
+} ordered_vector;
 
-int v_initialized = 0;
-void vector_init(u_vector*v) {
-    if(v_initialized == 1) {
+int ordered_vector_init(ordered_vector*v) {
+    if(v->initialized == 1) {
         fprintf(stderr, "vector_init: Vector is already initialized\n");
-        return;
+        return -1;
     }
-    else {
-        v->data = (int*)malloc(sizeof(int)*INITIAL_CAP); // 4byte;
-        if(v->data == NULL) {
-            perror("vector_init: Memory allocation error\n");
-            return;
-        }
-        v->size = 0;
-        v->capacity = INITIAL_CAP;
-        v_initialized = 1;
-        return;
-    }  
+    v->data = (int*)malloc(sizeof(int)*INITIAL_CAP); // 4byte;
+    if(v->data == NULL) {
+        perror("ordered_vector_init: Memory allocation error\n");
+        return -1;
+    }
+    v->size = 0;
+    v->capacity = INITIAL_CAP;
+    v->initialized = 1;
+    return 0;
 }
 
-int u_vector_push_back(u_vector*v,int element) 
+int ordered_vector_insert(ordered_vector*v,int element) 
 {
-	if (v->data == NULL || v_initialized == 0) 
+	if (v->data == NULL || v->initialized != 1) 
 	{
-        fprintf(stderr, "vector_push_back: Vector is NULL or not initialized\n");
+        fprintf(stderr, "ordered_vector_insert: Vector is NULL or not initialized\n");
         return -1;
     }
 	if(v->size==0) 
@@ -110,9 +108,10 @@ int u_vector_push_back(u_vector*v,int element)
 	}
 }
 
-int vector_delete(u_vector*v,int element) { //vector_delete(&v,element);
-    if (v->data == NULL || v->size == 0 || v_initialized == 0) {
-        fprintf(stderr, "vector_delete: Vector is empty or NULL | maybe not initialized\n");
+int ordered_vector_delete(ordered_vector*v,int element) 
+{
+    if (v->data == NULL || v->size == 0 || v->initialized != 1) {
+        fprintf(stderr, "ordered_vector_delete: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
     int index = -1;
@@ -121,7 +120,7 @@ int vector_delete(u_vector*v,int element) { //vector_delete(&v,element);
             index = i;
     if(index != -1) {
         int* tempData = (int*)malloc(sizeof(int)*v->capacity);
-        if(tempData == NULL) fprintf(stderr,"vector_delete: Memory allocation error");
+        if(tempData == NULL) perror("ordered_vector_delete: Memory allocation error");
         for(int i=0;i<index;i++)
             tempData[i] = v->data[i];
         for(int i=index;i<v->size;i++)
@@ -131,14 +130,11 @@ int vector_delete(u_vector*v,int element) { //vector_delete(&v,element);
         v->size--;
         return 0;
     }
-    else {
-        fprintf(stderr,"vector_delete: Element not found\n");
-        return -1;
-    }
+    else return -1;
 }
 
-int vector_pop(u_vector* v) {
-    if (v->data == NULL || v->size == 0 || v_initialized == 0) {
+int ordered_vector_pop(ordered_vector* v) {
+    if (v->data == NULL || v->size == 0 || v->initialized != 1) {
         fprintf(stderr, "vector_pop: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
@@ -148,9 +144,9 @@ int vector_pop(u_vector* v) {
     }
 }
 
-int vector_multiply(u_vector* v) {
-     if (v->data == NULL || v->size == 0 || v_initialized == 0) {
-        fprintf(stderr, "vector_multiply: Vector is empty or NULL | maybe not initialized\n");
+int ordered_vector_multiply(ordered_vector* v) {
+     if (v->data == NULL || v->size == 0 || v->initialized != 1) {
+        fprintf(stderr, "ordered_vector_multiply: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
     int result = 1;
@@ -159,9 +155,9 @@ int vector_multiply(u_vector* v) {
     return result;
 }
 
-int vector_sum(u_vector* v) {
-     if (v->data == NULL || v->size == 0 || v_initialized == 0 ) {
-        fprintf(stderr, "vector_sum: Vector is empty or NULL | maybe not initialized\n");
+int ordered_vector_sum(ordered_vector* v) {
+     if (v->data == NULL || v->size == 0 || v->initialized != 1 ) {
+        fprintf(stderr, "ordered_vector_sum: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
     int sum = 0;
@@ -170,9 +166,9 @@ int vector_sum(u_vector* v) {
     return sum;
 }
 
-float vector_avg(u_vector* v) {
-    if (v->data == NULL || v->size == 0 || v_initialized == 0) {
-        fprintf(stderr, "vector_avg: Vector is empty or NULL | maybe not initialized\n");
+float ordered_vector_avg(ordered_vector* v) {
+    if (v->data == NULL || v->size == 0 || v->initialized != 1) {
+        fprintf(stderr, "ordered_vector_avg: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
     int sum = 0;
@@ -182,9 +178,9 @@ float vector_avg(u_vector* v) {
     return (float) ((float)sum/(float)v->size);
 }
 
-int vector_get_last_element(u_vector* v) {
-    if (v->data == NULL || v->size == 0 || v_initialized == 0 ) {
-        fprintf(stderr, "vector_get_last_element: Vector is empty or NULL | maybe not initialized\n");
+int ordered_vector_last(ordered_vector* v) {
+    if (v->data == NULL || v->size == 0 || v->initialized != 1 ) {
+        fprintf(stderr, "ordered_vector_last: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
     if(v->size == 0) {
@@ -195,17 +191,17 @@ int vector_get_last_element(u_vector* v) {
     }   
 }
 
-int vector_size(u_vector *v) {
-	if (v->data == NULL || v_initialized == 0 ) {
-        fprintf(stderr, "vector_size: Vector is NULL | maybe not initialized\n");
+int ordered_vector_size(ordered_vector *v) {
+	if (v->data == NULL || v->initialized != 1 ) {
+        fprintf(stderr, "ordered_vector_size: Vector is NULL | maybe not initialized\n");
         return -1;
     }
     return v->size;
 }
 
-void vector_print(u_vector*v) {
-	if (v->data == NULL || v->size == 0 || v_initialized == 0) {
-        fprintf(stderr, "vector_print: Vector is empty or NULL | maybe not initialized\n");
+void ordered_vector_print(ordered_vector*v) {
+	if (v->data == NULL || v->size == 0 || v->initialized != 1) {
+        fprintf(stderr, "ordered_vector_print: Vector is empty or NULL | maybe not initialized\n");
         return;
     }
     printf("[");
@@ -214,9 +210,9 @@ void vector_print(u_vector*v) {
     return;
 }
 
-int vector_destroy(u_vector*v){
-    if (v->data == NULL || v_initialized == 0) {
-        fprintf(stderr, "vector_destroy: Vector is NULL | maybe already destroyed or not initialized\n");
+int ordered_vector_destroy(ordered_vector*v){
+    if (v->data == NULL || v->initialized != 1) {
+        fprintf(stderr, "ordered_vector_destroy: Vector is NULL | maybe already destroyed or not initialized\n");
         return -1;
     }
     free(v->data);
@@ -225,13 +221,31 @@ int vector_destroy(u_vector*v){
     return 0;
 }
 
-void vector_fill(u_vector* v, int fill_val) 
+void ordered_vector_fill(ordered_vector* v, int fill_val) 
 {
-    if (v->data == NULL || v->size == 0 || v_initialized == 0) 
+    if (v->data == NULL || v->size == 0 || v->initialized != 1) 
 	{
-        fprintf(stderr, "vector_fill: Vector is empty or NULL | maybe not initialized\n");
+        fprintf(stderr, "ordered_vector_fill: Vector is empty or NULL | maybe not initialized\n");
         return;
     }
     for(int i=0;i<v->size;i++)
         v->data[i] = fill_val;
+}
+int ordered_vector_s_IndexAt(ordered_vector* v, int element) 
+{
+    if (v->data == NULL || v->size == 0 || v->initialized != 1) 
+	{
+        fprintf(stderr, "ordered_vector_s_IndexAt: Vector is empty or NULL | maybe not initialized\n");
+        return -1;
+    }
+    int eb = v->size + 1;
+    int ek = -1;
+    while(ek < eb) 
+    {
+        int lookIndex = (eb + ek) / 2;
+        if(v->data[lookIndex] == element) return lookIndex;
+        else if(v->data[lookIndex] > element) eb = lookIndex -1;
+        else ek = lookIndex + 1;
+    }
+    return -1;
 }
