@@ -8,7 +8,7 @@
 1. First we need to include our header file.
 
 ```c
-#include "vector.h"         // for unordered_vector;
+#include "vector.h"         // for unordered vector;
 ```
 2. Create and initialize vector struct.
 ```c
@@ -105,7 +105,7 @@ Average of vector elements is: 5.250000
 1. First we need to include our header file.
 
 ```c
-#include "ordered_vector.h"         // for ordered_vector;
+#include "ordered_vector.h"         // for ordered vector;
 ```
 2. Create and initialize vector struct.
 ```c
