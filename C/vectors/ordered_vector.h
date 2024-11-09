@@ -4,7 +4,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<string.h>
 #define INITIAL_CAP 5
 typedef struct {
     int* data;
@@ -63,7 +63,7 @@ int ordered_vector_insert(ordered_vector*v,int element)
 		int* temp = (int*)malloc(sizeof(int) * v->capacity);
 		if(temp == NULL) 
 		{
-        	perror("vector_push_back: Temporary Memory allocation error");
+        	perror("ordered_vector_insert: Temporary Memory allocation error");
 			return -1;
         }
 		int checked_index = 0;
@@ -73,17 +73,20 @@ int ordered_vector_insert(ordered_vector*v,int element)
 				checked_index++;
 			else 
 			{
-				for(int k=0;k<checked_index;k++) 
-					temp[k] = v->data[k];
+				// for(int k=0;k<checked_index;k++) 
+				//      temp[k] = v->data[k];
+                memcpy(temp,v->data,sizeof(int) * checked_index);
 				temp[checked_index] = element;
-				for(int k=checked_index;k<v->size;k++) 
-					temp[k+1] = v->data[k];
-			}
-			v->size++;
-			free(v->data);
-			v->data = temp;
-			break;
+				// for(int k=checked_index;k<v->size;k++) 
+				// 	temp[k+1] = v->data[k];
+                memcpy(temp + checked_index + 1,v->data + checked_index,sizeof(int)* (v->size - checked_index));                
+                break;
+            }
 		}
+		v->size++;
+		free(v->data);
+		v->data = temp;
+        return 0;
 	}
 	else 
 	{
@@ -94,9 +97,10 @@ int ordered_vector_insert(ordered_vector*v,int element)
 				checked_index++;
 			else 
 			{
-				for(int k=v->size;k>checked_index;k--)
-					v->data[k] = v->data[k-1];
-				v->data[checked_index] = element;
+				// for(int k=v->size;k>checked_index;k--)
+				//      v->data[k] = v->data[k-1];
+				memmove(v->data + checked_index + 1, v->data + checked_index, sizeof(int) * (v->size - checked_index));
+                v->data[checked_index] = element;
 				v->size++;
 				return 0;
 			
@@ -231,7 +235,7 @@ void ordered_vector_fill(ordered_vector* v, int fill_val)
     for(int i=0;i<v->size;i++)
         v->data[i] = fill_val;
 }
-int ordered_vector_s_IndexAt(ordered_vector* v, int element) 
+int ordered_vector_IndexAt(ordered_vector* v, int element) 
 {
     if (v->data == NULL || v->size == 0 || v->initialized != 1) 
 	{
