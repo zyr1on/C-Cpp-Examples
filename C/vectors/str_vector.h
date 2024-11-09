@@ -95,11 +95,22 @@ int str_vector_destroy(str_vector* v)
 int str_vector_IndexAt(str_vector* v, char* element) 
 {
     for(int i=0;i<v->size;i++) 
-    {
         if(strcmp(v->data[i],element) == 0) 
-        {
             return i;
+    return -1;
+}
+void str_vector_fill(str_vector* v,char* fill_val) 
+{
+    size_t fill_len = strlen(fill_val);
+    for (int i = 0; i < v->size; i++) 
+    {
+        free(v->data[i]);
+        v->data[i] = (char*)malloc(sizeof(char) * (fill_len + 1));
+        if (v->data[i] != NULL) {
+            strncpy(v->data[i], fill_val, fill_len);
+            v->data[i][fill_len] = '\0';
+        } else {
+            fprintf(stderr, "Memory allocation failed for element %d\n", i);
         }
     }
-    return -1;
 }
