@@ -9,7 +9,13 @@ typedef struct {
     size_t size;
     size_t capacity;
 } str_vector;
-
+int str_validate_vector(str_vector* v, char* _errStr) {
+    if(v == NULL || v->data == NULL || v->initialized != 1) {
+        fprintf(stderr,_errStr);
+        return 0;
+    }
+    return 1;
+}
 int str_vector_init(str_vector* v) {
     if (v == NULL) {
         fprintf(stderr, "str_vector_init: Vector pointer is NULL\n");
@@ -31,10 +37,7 @@ int str_vector_init(str_vector* v) {
     return 0;
 }
 int str_vector_push_back(str_vector* v, char* string) {
-    if (v == NULL || v->initialized != 1 || v->data == NULL) {
-        fprintf(stderr, "str_vector_push_back: Vector is NULL or not initialized\n");
-        return -1;
-    }
+    if(!str_validate_vector(v,"str_vector_push_back: Vector is NULL or not initialized\n")) return -1;
     if (v->size >= v->capacity) {
         char** temp = (char**)malloc(sizeof(char*) * v->capacity * 2);
         if (temp == NULL) {
@@ -55,7 +58,7 @@ int str_vector_push_back(str_vector* v, char* string) {
     }
     v->data[v->size] = (char*)malloc(sizeof(char) * (strlen(string) + 1));
     if (v->data[v->size] == NULL) {
-        perror("vector_push_back_s: (malloc) Memory allocation error");
+        perror("str_vector_push_back: (malloc) Memory allocation error");
         return -1;
     }
     strncpy(v->data[v->size], string, strlen(string));
@@ -64,10 +67,7 @@ int str_vector_push_back(str_vector* v, char* string) {
     return 0;
 }
 void str_vector_print(str_vector* v) {
-	if (v == NULL || v->initialized != 1||v->data == NULL || v->size == 0) {
-        fprintf(stderr, "str_vector_print: Vector is empty or NULL | maybe not initialized\n");
-        return;
-    }
+	if(!str_validate_vector(v,"str_vector_print: Vector is NULL or not initialized\n")) return;
     printf("[");
     for(int i=0;i<v->size;i++)
         if(i != v->size-1) 
@@ -78,11 +78,7 @@ void str_vector_print(str_vector* v) {
 }
 int str_vector_destroy(str_vector* v)
 {
-    if (v == NULL || v->initialized != 1 ||v->data == NULL)
-    {
-        fprintf(stderr, "str_vector_destroy: Vector is not initialized\n");
-        return -1;
-    }
+    if(!str_validate_vector(v,"str_vector_destroy: Vector is NULL or not initialized\n")) return -1;
     for(int i=0;i<v->capacity;i++)
         free(v->data[i]);
     free(v->data);
@@ -94,6 +90,7 @@ int str_vector_destroy(str_vector* v)
 }
 int str_vector_IndexAt(str_vector* v, char* element) 
 {
+    if(!str_validate_vector(v,"str_vector_IndexAt: Vector is NULL or not initialized\n")) return -1;
     for(int i=0;i<v->size;i++) 
         if(strcmp(v->data[i],element) == 0) 
             return i;
@@ -101,6 +98,7 @@ int str_vector_IndexAt(str_vector* v, char* element)
 }
 void str_vector_fill(str_vector* v,char* fill_val) 
 {
+    if(!str_validate_vector(v,"str_vector_fill: Vector is NULL or not initialized\n")) return;
     size_t fill_len = strlen(fill_val);
     for (int i = 0; i < v->size; i++) 
     {
@@ -109,8 +107,7 @@ void str_vector_fill(str_vector* v,char* fill_val)
         if (v->data[i] != NULL) {
             strncpy(v->data[i], fill_val, fill_len);
             v->data[i][fill_len] = '\0';
-        } else {
+        } else
             fprintf(stderr, "Memory allocation failed for element %d\n", i);
-        }
     }
 }
