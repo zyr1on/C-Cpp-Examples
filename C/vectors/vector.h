@@ -19,8 +19,7 @@ int compare(const void* a, const void* b) {
    return (*(int*)a - *(int*)b);
 }
 int validate_vector(vector* v, char* _errStr) {
-    if(v == NULL || v->data == NULL || v->initialized != 1) 
-    {
+    if(v == NULL || v->data == NULL || v->initialized != 1) {
         fprintf(stderr,_errStr);
         return 0;
     }
