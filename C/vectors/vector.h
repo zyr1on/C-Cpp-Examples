@@ -193,7 +193,7 @@ void vector_shuffle(vector* v) {
     }
 }
 int vector_reverse(vector* v) {
-    if(!validate_vector(v,"vector_reverse: Vector is empty or NULL | maybe not initialized\n")) return; 
+    if(!validate_vector(v,"vector_reverse: Vector is empty or NULL | maybe not initialized\n")) return -1; 
     for(int i=0;i<v->size/2;i++) 
     {
         int temp = v->data[i];
@@ -203,7 +203,7 @@ int vector_reverse(vector* v) {
     return 0;
 }
 int vector_destroy(vector*v) {
-    if(!validate_vector(v,"vector_destroy: Vector is NULL | maybe already destroyed or not initialized\n")) return;
+    if(!validate_vector(v,"vector_destroy: Vector is NULL | maybe already destroyed or not initialized\n")) return -1;
     free(v->data);
     v->data = NULL;
     v->size = 0;
