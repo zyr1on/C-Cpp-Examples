@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include<string.h>
 #define INITIAL_CAP 5
-
 typedef struct {
     int* data;
     size_t size;
@@ -14,8 +13,9 @@ typedef struct {
     int initialized;
 } ordered_vector;
 
-int validate_vector(ordered_vector* v, char* _errStr) {
-    if(v == NULL || v->data == NULL || v->initialized != 1) {
+int ordered_validate_vector(ordered_vector* v, char* _errStr) {
+    if(v == NULL || v->data == NULL || v->initialized != 1) 
+    {
         fprintf(stderr,_errStr);
         return 0;
     }
@@ -39,7 +39,7 @@ int ordered_vector_init(ordered_vector*v) {
 }
 
 int ordered_vector_IndexAt(ordered_vector* v, int element, int type) {
-    if(!validate_vector(v,"ordered_vector_IndexAt: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_IndexAt: Vector is NULL or not initialized\n")) return -1;
     int left = 0, right = v->size - 1;
     while (left <= right) {
         int mid = left + (right - left) / 2;
@@ -55,7 +55,7 @@ int ordered_vector_IndexAt(ordered_vector* v, int element, int type) {
 }
 
 int ordered_vector_insert(ordered_vector* v, int element) {
-    if(!validate_vector(v,"ordered_vector_insert: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_insert: Vector is NULL or not initialized\n")) return -1;
     if (v->size >= v->capacity) {
         v->capacity *= 2;
         int* temp = (int*)malloc(sizeof(int) * v->capacity);
@@ -75,14 +75,17 @@ int ordered_vector_insert(ordered_vector* v, int element) {
     return 0;
 }
 
-int ordered_vector_delete(ordered_vector*v , int element) {
-    if(!validate_vector(v,"ordered_vector_delete: Vector is NULL or not initialized\n")) return -1;
+int ordered_vector_delete(ordered_vector*v , int element) 
+{
+    if(!ordered_validate_vector(v,"ordered_vector_delete: Vector is NULL or not initialized\n")) return -1;
     int index = ordered_vector_IndexAt(v,element,0);
-    if(index == -1) {
+    if(index == -1) 
+    {
         fprintf(stderr, "ordered_vector_delete: Element not found\n");
         return -1;
     }
-    if(index == v->size -1) {
+    if(index == v->size -1) 
+    {
         v->size--;
         return 0;
     }
@@ -92,12 +95,12 @@ int ordered_vector_delete(ordered_vector*v , int element) {
 }
 
 int ordered_vector_pop(ordered_vector* v) {
-    if(!validate_vector(v,"ordered_vector_pop: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_pop: Vector is NULL or not initialized\n")) return -1;
     return v->data[v->size--];
 }
 
 int ordered_vector_multiply(ordered_vector* v) {
-    if(!validate_vector(v,"ordered_vector_multiply: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_multiply: Vector is NULL or not initialized\n")) return -1;
     int result = 1;
     for(int i=0;i<v->size;i++)
         result *= v->data[i];
@@ -105,7 +108,7 @@ int ordered_vector_multiply(ordered_vector* v) {
 }
 
 int ordered_vector_sum(ordered_vector* v) {
-    if(!validate_vector(v,"ordered_vector_sum: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_sum: Vector is NULL or not initialized\n")) return -1;
     int sum = 0;
     for(int i=0;i<v->size;i++)
         sum += v->data[i];
@@ -113,29 +116,30 @@ int ordered_vector_sum(ordered_vector* v) {
 }
 
 float ordered_vector_avg(ordered_vector* v) {
-    if(!validate_vector(v,"ordered_vector_avg: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_avg: Vector is NULL or not initialized\n")) return -1;
     int sum = 0;
-    for(int i=0;i<v->size;i++)
+    for(int i=0;i<v->size;i++) {
         sum += v->data[i];
+    }
     return (float) ((float)sum/(float)v->size);
 }
 
 int ordered_vector_back(ordered_vector* v) {
-    if(!validate_vector(v,"ordered_vector_last: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_last: Vector is NULL or not initialized\n")) return -1;
     return v->data[v->size-1];   
 }
 int ordered_vector_front(ordered_vector* v) {
-    if(!validate_vector(v,"ordered_vector_front: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_front: Vector is NULL or not initialized\n")) return -1;
     return v->data[0];   
 }
 
 int ordered_vector_size(ordered_vector *v) {
-	if(!validate_vector(v,"ordered_vector_size: Vector is NULL or not initialized\n")) return -1;
+	if(!ordered_validate_vector(v,"ordered_vector_size: Vector is NULL or not initialized\n")) return -1;
     return v->size;
 }
 
 void ordered_vector_print(ordered_vector*v) {
-	if(!validate_vector(v,"ordered_vector_print: Vector is NULL or not initialized\n")) return;
+	if(!ordered_validate_vector(v,"ordered_vector_print: Vector is NULL or not initialized\n")) return;
     printf("[");
     for(int i=0;i<v->size-1;i++) printf("%d,",v->data[i]);
     printf("%d]\n",v->data[v->size-1]);
@@ -143,14 +147,15 @@ void ordered_vector_print(ordered_vector*v) {
 }
 
 int ordered_vector_destroy(ordered_vector*v){
-    if(!validate_vector(v,"ordered_vector_destroy: Vector is NULL or not initialized\n")) return -1;
+    if(!ordered_validate_vector(v,"ordered_vector_destroy: Vector is NULL or not initialized\n")) return -1;
     free(v->data);
     v->data = NULL;
     v->size = 0;
     return 0;
 }
 
-void ordered_vector_fill(ordered_vector* v, int fill_val) {
-    if(!validate_vector(v,"ordered_vector_fill: Vector is NULL or not initialized\n")) return;
+void ordered_vector_fill(ordered_vector* v, int fill_val) 
+{
+    if(!ordered_validate_vector(v,"ordered_vector_fill: Vector is NULL or not initialized\n")) return;
     memset(v->data,fill_val,sizeof(int)*v->size);
 }
