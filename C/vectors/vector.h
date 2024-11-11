@@ -80,33 +80,33 @@ int vector_push_front(vector* v,int element) {
     return 0;
 }
 
-int vector_delete(vector* v,int element) { //vector_delete(&v,element);
+int vector_IndexAt(vector* v, int element) 
+{
+    for(int i=0;i<v->size;i++)
+        if(v->data[i] == element)
+            return i;
+    return -1;
+}
+
+int vector_delete(vector* v, int element) {
     if (v->data == NULL || v->size == 0 || v->initialized != 1) {
         fprintf(stderr, "vector_delete: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
-    int index = -1;
-    for(int i=0;i<v->size;i++)
-        if(v->data[i] == element) {
-            index = i;
-            break;
-        }
-    if(index != -1) {
-        int* tempData = (int*)malloc(sizeof(int)*v->capacity);
-        if(tempData == NULL) fprintf(stderr,"vector_delete: Memory allocation error");
-        if(index > 0) 
-            memcpy(tempData,v->data,sizeof(int)*index);
-        if(index < v->size -1)
-            memcpy(tempData + index,v->data+index+1,sizeof(int) * (v->size - index - 1));
-        free(v->data);
-        v->data = tempData;
-        v->size--;
-        return 0;
-    }
-    else {
+    int index = vector_IndexAt(v,element);
+    if(index == -1)
+    {
         fprintf(stderr,"vector_delete: Element not found\n");
         return -1;
     }
+    if(index == v->size -1) 
+    {
+        v->size--;
+        return 0;
+    }
+    memmove(v->data + index, v->data + index + 1, sizeof(int) * (v->size - index - 1));
+    v->size--;
+    return 0;
 }
 
 int vector_sort(vector* v) { //selection sort;
@@ -150,7 +150,6 @@ int vector_sum(vector* v) {
         sum += v->data[i];
     return sum;
 }
-
 float vector_avg(vector* v) {
     if (v->data == NULL || v->size == 0 || v->initialized != 1) {
         fprintf(stderr, "vector_avg: Vector is empty or NULL | maybe not initialized\n");
@@ -163,17 +162,22 @@ float vector_avg(vector* v) {
     return (float) ((float)sum/(float)v->size);
 }
 
-int vector_get_last_element(vector* v) {
+int vector_front(vector* v) 
+{
     if (v->data == NULL || v->size == 0 || v->initialized != 1 ) {
         fprintf(stderr, "vector_get_last_element: Vector is empty or NULL | maybe not initialized\n");
         return -1;
     }
-    if(v->size == 0) {
-        return v->data[0];
+    return v->data[0];
+}
+int vector_back(vector* v) {
+    if (v->data == NULL || v->size == 0 || v->initialized != 1 ) {
+        fprintf(stderr, "vector_get_last_element: Vector is empty or NULL | maybe not initialized\n");
+        return -1;
     }
-    else {
-        return v->data[v->size-1];
-    }   
+    if(v->size == 0)
+        return v->data[0];
+    return v->data[v->size-1];
 }
 
 int vector_max(vector* v) {
@@ -233,7 +237,20 @@ void vector_shuffle(vector* v) {
         v->data[randNum] = temp;
     }
 }
-
+int vector_reverse(vector* v) 
+{
+    if (v->data == NULL || v->size == 0 || v->initialized != 1 ) {
+        fprintf(stderr, "vector_get_last_element: Vector is empty or NULL | maybe not initialized\n");
+        return -1;
+    }
+    for(int i=0;i<v->size/2;i++) 
+    {
+        int temp = v->data[i];
+        v->data[i] = v->data[v->size -1-i];
+        v->data[v->size-1-i] = temp;
+    }
+    return 0;
+}
 int vector_destroy(vector*v){
     if (v->data == NULL || v->initialized != 1) {
         fprintf(stderr, "vector_destroy: Vector is NULL | maybe already destroyed or not initialized\n");
@@ -256,10 +273,4 @@ void vector_fill(vector* v, int fill_val)
     for(int i=0;i<v->size;i++) 
         v->data[i] = fill_val;
 }
-int vector_IndexAt(vector* v, int element) 
-{
-    for(int i=0;i<v->size;i++)
-        if(v->data[i] == element)
-            return i;
-    return -1;
-}
+
