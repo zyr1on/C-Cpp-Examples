@@ -18,5 +18,5 @@ bitset and array lib
 
 
 
-sha256sum | f2d2f36073c7cca65260577d4799b0d1a8130f35211863faa4c74e5d3593dba6  idm_reset.exe
-<a href="https://www.virustotal.com/gui/file/f2d2f36073c7cca65260577d4799b0d1a8130f35211863faa4c74e5d3593dba6?nocache=1">VirusTotal</a>
+sha256sum | 5ce1eae16991f63ecc2e24e82302962f096f0034dae4e77fdcf1445300e52166  idm_reset.exe
+<a href="https://www.virustotal.com/gui/file/5ce1eae16991f63ecc2e24e82302962f096f0034dae4e77fdcf1445300e52166?nocache=1">VirusTotal</a>
